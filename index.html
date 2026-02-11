@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VIP MOTORS</title>
+	<meta name="description" content="cars." />
+	<meta name="keywords" content="cars, road, highway, lights, speed" />
+	<meta name="author" content="EL-KABOOS" />
+	<link rel="shortcut icon" href="./assets/vmLOGO.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://use.typekit.net/uok8swb.css">
+	<link rel="stylesheet" href="base.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/three@0.160.0/build/three.module.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <!--<script src="circletype.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+</head>
+<body class="before-load">
+  <div class="loading">
+    <div class="load-skull">
+      <img class="load-skullcen" src="./assets/VM-Skull-II.webp"></img>
+      <div class="load-VMwrap">
+        <img class="load-VMcen" src="./assets/VANGUARDmarquee.webp" alt="">
+      </div>
+      <img class="load-flameI" src="./assets/VM-fire-loop.gif"></img>
+      <img class="load-flameII" src="./assets/VM-fire-loop.gif"></img>
+    </div>
+  </div>
+
+  <canvas id="grid-bg"></canvas>
+<!--
+  <div class="marquee-wrapper">
+    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <path id="path43" d="M 150,150 L 650,150 L 650,450 L 150,450 Z" />
+      </defs>
+      
+      <use href="#path43" fill="none" stroke="#fff" stroke-width="1" />
+  
+      <text fill="#fff" font-family="'LEMONMILK-Regular', 'Roboto', sans-serif" font-size="28" font-weight="bold" dy="-10">
+        <textPath id="marqueeText" href="#path43" startOffset="0%">
+          the biggest luxury car showroom in UAE • VIP MOTORS • 
+        </textPath>
+      </text>
+  
+      <rect x="110" y="110" width="40" height="40" fill="#fff" stroke="#fff" stroke-width="1" /> <rect x="650" y="110" width="40" height="40" fill="#fff" stroke="#fff" stroke-width="1" /> <rect x="650" y="450" width="40" height="40" fill="#fff" stroke="#fff" stroke-width="1" /> <rect x="110" y="450" width="40" height="40" fill="#fff" stroke="#fff" stroke-width="1" /> </svg>
+  </div>
+-->
+  <div class="marquee-wrapper">
+    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <path id="path43" d="M 150,150 L 650,150 L 650,450 L 150,450 Z" />
+        
+        <mask id="cornerMask">
+          <rect x="0" y="0" width="800" height="600" fill="white" />
+          
+          <g fill="black" filter="url(#blurFilter)">
+            <circle cx="150" cy="150" r="70" /> <circle cx="650" cy="150" r="70" /> <circle cx="650" cy="450" r="70" /> <circle cx="150" cy="450" r="70" /> </g>
+          
+          <filter id="blurFilter">
+            <feGaussianBlur stdDeviation="15" />
+          </filter>
+        </mask> 
+      </defs>
+      
+      <use href="#path43" fill="none" stroke="#fff" stroke-width="1" opacity="1" />
+  
+      <text fill="#fff" 
+            font-family="'LEMONMILK-Regular', 'Roboto', sans-serif" 
+            font-size="28" 
+            font-weight="bold" 
+            dy="-15"
+            mask="url(#cornerMask)">
+        <textPath id="marqueeText" href="#path43" startOffset="0%">
+          the biggest luxury car showroom in UAE • VIP MOTORS • 
+        </textPath>
+      </text>
+    </svg>
+  </div>
+
+  <div class="screen-view">
+    <div class="screen-video">
+      <video id="screen-video-wrapper" autoplay muted playsinline loop preload="auto" webkit-playsinline>
+        <source src="./assets/vm.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="marqueecontainer fade-sides">
+      <div class="marqueecontent">
+        <span>•</span>
+        <span class="RC">V I P</span>
+        <span>•</span>
+        <span>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations</span>
+        <span>•</span>
+        <span class="RC">V I P</span>
+        <span>•</span>
+        <span>supercars, classic legends & luxury automotive brands</span>
+        <span>•</span>
+        <span class="RC">V I P</span>
+        <span>•</span>
+        <span>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations</span>
+        <span>•</span>
+        <span class="RC">V I P</span>
+        <span>•</span>
+        <span>supercars, classic legends & luxury automotive brands</span>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="marquee-trial-II">
+    <div class="marquee-trial-content-II">
+      <span>
+          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+          &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
+          you can't download the experience &nbsp;
+      </span>
+    </div>
+  </div>
+	<div class="marquee-trial">
+    <div class="marquee-trial-content">
+      <span>
+          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+          &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
+          you can't download the experience &nbsp;
+      </span>
+    </div>
+  </div>
+
+  <div class="skull">
+    <img class="skullcen" src="./assets/VM-Skull-II.png"></img>
+    <div class="VMwrap">
+      <img class="VMcen" src="./assets/VANGUARDmarquee.png" alt="">
+    </div>
+    <img class="flameBW" src="./assets/VM-fire-loop-BW.gif"></img>
+  </div>
+  
+  <div class="circular-text">
+    <div class="morph-text" id="morph-text">VIP</div>
+  </div>
+
+  <!--MENU-->
+
+  <div class="logo">
+    <img src="./assets/vmLOGO.svg"></img>
+    <a href="">VIP motors</a>
+  </div>
+  <div class="menu-toggle closed">
+    <div class="menu-toggle-icon">
+      <div class="hamburger">
+        <div class="menu-bar" data-position="top"></div>
+        <div class="menu-bar" data-position="bottom"></div>
+      </div>
+    </div>
+    <div class="menu-copy">
+      <span class="menu-bg"></span>
+      <p>Start</p>
+    </div>
+  </div>
+
+  <div class="menu">
+    <div class="menu-logo">
+        <a href="#">VIP motors</a>
+    </div>
+    <div class="menu-wrap">
+      <nav class="menu-nav">
+        <div class="menu__item">
+           <a class="menu__item-link" href="./inventory/index.html" target="_blank">INVENTORY</a>
+            <div class="marquee">
+             <div class="marquee__inner-wrap">
+              <div class="marquee__inner" aria-hidden="true">
+                <span>the nation’s premier classic and muscle car dealership!   •</span>
+                <span>If Classic & Muscle Cars are your passion, Welcome Home. We are dedicated to parking your dream in your driveway!   •</span>
+                <span>the nation’s premier classic and muscle car dealership!   •</span>
+                <span>If Classic & Muscle Cars are your passion, Welcome Home. We are dedicated to parking your dream in your driveway!   •</span>
+              </div>
+            </div>
+           </div>
+          </div>
+          <div class="menu__item">
+           <a class="menu__item-link" href="./sell your car/index.html" target="_blank">SELL YOUR CAR</a>
+            <div class="marquee">
+             <div class="marquee__inner-wrap">
+              <div class="marquee__inner" aria-hidden="true">
+                <span>WE ARE ALWAYS LOOKING FOR HIGH QUALITY VEHICLES!   •</span>
+                <span>SAFE TRANSACTION - QUICK PAYMENT   •</span>
+                <span>WE ARE ALWAYS LOOKING FOR HIGH QUALITY VEHICLES!   •</span>
+                <span>SAFE TRANSACTION - QUICK PAYMENT   •</span>
+              </div>
+            </div>
+           </div>
+          </div>
+          <div class="menu__item">
+           <a class="menu__item-link" href="./news/index.html" target="_blank">NEWS</a>
+            <div class="marquee">
+             <div class="marquee__inner-wrap">
+              <div class="marquee__inner" aria-hidden="true">
+                  <span>Did you know, paying cash for a classic car may not be the better option?!   •</span>
+                  <span>Our buyers speak highly in reference to the customer service, competitive rates, extended terms and no pre payment penalties!   •</span>
+                  <span>Did you know, paying cash for a classic car may not be the better option?!   •</span>
+                  <span>Our buyers speak highly in reference to the customer service, competitive rates, extended terms and no pre payment penalties!   •</span>
+              </div>
+            </div>
+           </div>
+          </div>
+          <div class="menu__item">
+              <a class="menu__item-link" href="./about/index.html" target="_blank">ABOUT US</a>
+              <div class="marquee">
+                <div class="marquee__inner-wrap">
+                 <div class="marquee__inner" aria-hidden="true">
+                    <span>the nation’s premier classic and muscle car dealership!   •</span>
+                    <span>we have earned a reputation as the most trusted car dealer in America. We are dedicated to parking your dream in your driveway!   •</span>
+                    <span>the nation’s premier classic and muscle car dealership!   •</span>
+                    <span>we have earned a reputation as the most trusted car dealer in America. We are dedicated to parking your dream in your driveway!   •</span>
+                 </div>
+                </div>
+              </div>
+          </div>
+          <div class="menu__item">
+              <a class="menu__item-link" href="./contact/index.html" target="_blank">Get In Touch</a>
+              <div class="marquee">
+                <div class="marquee__inner-wrap">
+                 <div class="marquee__inner" aria-hidden="true">
+                    <span>TikTok</span>
+                    <span><i class="fa-brands fa-tiktok"></i></span>
+                    <span>Instagram</span>
+                    <span><i class="fa-brands fa-instagram"></i></span>
+                    <span>Telegram</span>
+                     <span><i class="fa-brands fa-telegram"></i></span>
+                    <span>YouTube</span>
+                    <span><i class="fa-brands fa-youtube"></i></span>
+                    <span>TikTok</span>
+                    <span><i class="fa-brands fa-tiktok"></i></span>
+                    <span>Instagram</span>
+                    <span><i class="fa-brands fa-instagram"></i></span>
+                    <span>Telegram</span>
+                     <span><i class="fa-brands fa-telegram"></i></span>
+                    <span>YouTube</span>
+                    <span><i class="fa-brands fa-youtube"></i></span>
+                    <span>TikTok</span>
+                    <span><i class="fa-brands fa-tiktok"></i></span>
+                    <span>Instagram</span>
+                    <span><i class="fa-brands fa-instagram"></i></span>
+                    <span>Telegram</span>
+                     <span><i class="fa-brands fa-telegram"></i></span>
+                    <span>YouTube</span>
+                    <span><i class="fa-brands fa-youtube"></i></span>
+                    <span>TikTok</span>
+                    <span><i class="fa-brands fa-tiktok"></i></span>
+                    <span>Instagram</span>
+                    <span><i class="fa-brands fa-instagram"></i></span>
+                    <span>Telegram</span>
+                     <span><i class="fa-brands fa-telegram"></i></span>
+                    <span>YouTube</span>
+                    <span><i class="fa-brands fa-youtube"></i></span>
+                 </div>
+                </div>
+              </div>
+          </div>
+      </nav>
+    </div>
+    
+    <div class="col col-1">
+      <div class="links">
+        <div class="link"><a href="#"></a></div>
+        <div class="link"><a href="#"></a></div>
+        <div class="link"><a href="#"></a></div>
+        <div class="link"><a href="#"></a></div>
+      </div>
+      <div class="video-wrapper">
+        <video id="video-wrapper" autoplay muted playsinline loop preload="auto" webkit-playsinline>
+          <source src="./assets/vm.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+    <div class="col col-2">
+      <div class="socials">
+        <div class="sub-col">
+          <p>VIP</p>
+          <p>15100 Keel St. Plymouth</p>
+          <p>MI 48170</p>
+          <p>United States</p>
+          <br />
+          <a href="#" ><p>vanguardmotorsales.com</p></a>
+        </div>
+        <div class="sub-col">
+          <a href="https://www.instagram.com/vanguardmotors" target="_blank"><p>Instagram</p></a>
+          <a href="www.youtube.com/@vanguardmotorsales" target="_blank"><p>YouTube</p></a>
+          <a href="https://www.tiktok.com/@vanguardmotorsales" target="_blank"><p>TikTok</p></a>
+          <a href="https://www.facebook.com/vanguardmotorsfb#" target="_blank"><p>Facebook</p></a>
+          <br />
+          <a title="Call Us" href="tel:248-974-9513" target="_blank"><p>248-974-9513</p></a>
+        </div>
+      </div>
+      <div class="header">
+        <h1>VIP</h1>
+      </div>
+    </div>
+  </div>
+
+  <svg class="max-txt" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="HoverDistort">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="2" stitchTiles="stitch" result="turb">
+          <animate attributeName="seed" from="2" to="50" dur="5s" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turb" scale="10" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="HoverDistort-max">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="2" stitchTiles="stitch" result="turb">
+          <animate attributeName="seed" from="2" to="50" dur="5s" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turb" scale="33" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <filter id="HoverDistortThunder">
+        <!-- First: HoverDistort -->
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="2" stitchTiles="stitch" result="t1">
+          <animate attributeName="seed" from="2" to="50" dur="5s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="t1" scale="10" xChannelSelector="R" yChannelSelector="G" result="pass1"/>
+        
+        <!-- Second: HoverDistort-max -->
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="2" stitchTiles="stitch" result="t2">
+          <animate attributeName="seed" from="2" to="50" dur="5s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="pass1" in2="t2" scale="33" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <script type="module" src="main.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/index.cad48f07.js"></script>
+
+  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    function magneticEffect(element, strength = 40, easing = 0.15, invert = false) {
+      let mouseX = 0, mouseY = 0;
+      let targetX = 0, targetY = 0;
+
+      const parent = element.closest(".logo");
+
+      // save the base transform from CSS
+      const baseTransform = window.getComputedStyle(element).transform === "none" 
+        ? "" 
+        : window.getComputedStyle(element).transform;
+
+      parent.addEventListener("mousemove", e => {
+        const rect = parent.getBoundingClientRect();
+        const relX = e.clientX - (rect.left + rect.width / 2);
+        const relY = e.clientY - (rect.top + rect.height / 2);
+
+        targetX = (relX / rect.width) * strength * (invert ? -1 : 1);
+        targetY = (relY / rect.height) * strength * (invert ? -1 : 1);
+      });
+
+      parent.addEventListener("mouseleave", () => {
+        targetX = 0;
+        targetY = 0;
+      });
+
+      function animate() {
+        mouseX += (targetX - mouseX) * easing;
+        mouseY += (targetY - mouseY) * easing;
+
+        // Apply GSAP offsets **in addition to** the original CSS transform
+        gsap.set(element, {
+          transform: `${baseTransform} translate(${mouseX}px, ${mouseY}px)`
+        });
+      requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    // Apply separately
+    magneticEffect(document.querySelector(".logo img"), 35, 0.15);       // img with base centering + rotation
+    magneticEffect(document.querySelector(".logo a"), 20, 0.12, true);   // text opposite movement
+  </script>
+
+<script type="module">
+  import gsap from "https://cdn.skypack.dev/gsap";
+  
+  // Select the morphing text element
+  const morphText = document.getElementById("morph-text");
+  
+  // Words to cycle through
+  const words = ["V I P", "Motors", "Turbos", "Drifts"];
+  let wordIndex = 0;
+  
+  // Morphing function
+  function morphWords() {
+    gsap.to(morphText, {
+      duration: 0.5,
+      opacity: 0,
+      scale: 0.9,
+      ease: "power2.inOut",
+      onComplete: () => {
+        wordIndex = (wordIndex + 1) % words.length;
+        morphText.textContent = words[wordIndex];
+        gsap.to(morphText, {
+          duration: 0.5,
+          opacity: 1,
+          scale: 1,
+          ease: "power2.inOut",
+        });
+      },
+    });
+  }
+  
+  // Loop the morph every 2.5 seconds
+  setInterval(morphWords, 2500);
+  
+  // Optional subtle idle animation
+  gsap.to(morphText, {
+    duration: 2,
+    scale: 1.05,
+    repeat: -1,
+    yoyo: true,
+    ease: "power1.inOut",
+  });
+</script>
+
+  
+  <script>
+    function lockViewport() {
+      // Reset scroll position
+      window.scrollTo(0, 0);
+    
+      // Force body to exactly match viewport size
+      document.body.style.position = 'fixed';
+      document.body.style.top = '0';
+      document.body.style.left = '0';
+      document.body.style.width = window.innerWidth + 'px';
+      document.body.style.height = window.innerHeight + 'px';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.width = '100%';
+      document.documentElement.style.height = '100%';
+    }
+    
+    // Apply immediately and on resize
+    lockViewport();
+    window.addEventListener('resize', lockViewport);
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const skull = document.querySelector('.skull');
+    const strength = 50; // distance intensity (higher = stronger)
+    const ease = 0.2; // motion smoothness
+    
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      const rect = skull.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // distance from center
+      mouseX = (e.clientX - centerX) / strength;
+      mouseY = (e.clientY - centerY) / strength;
+    });
+    
+    function animate() {
+      // smooth lerp motion
+      targetX += (mouseX - targetX) * ease;
+      targetY += (mouseY - targetY) * ease;
+      
+      gsap.to(skull, {
+        x: targetX,
+        y: targetY,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // smooth marquee speed switch
+
+    const spin = gsap.to(".VMcen", {
+      rotation: -360,
+      repeat: -1,
+      ease: "none",
+      duration: 20,
+      transformOrigin: "50% 50%",
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseenter", () => {
+      gsap.to(spin, { timeScale: 5, duration: 1, ease: "power2.out" }); // speed up smoothly
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseleave", () => {
+      gsap.to(spin, { timeScale: 1, duration: 1.2, ease: "power2.inOut" }); // slow down smoothly
+    });
+     
+  </script>
+
+</body>
+</html>

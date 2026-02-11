@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Motors | Unique Cars</title>
+  <link rel="shortcut icon" href="../assets/vmLOGO.svg">
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+<body class="before-load">
+  <div class="loading">
+    <div class="load-skull">
+      <img class="load-skullcen" src="../assets/VM-Skull-II.webp"></img>
+      <div class="load-VMwrap">
+        <img class="load-VMcen" src="../assets/VANGUARDmarquee.webp" alt="">
+      </div>
+      <img class="load-flameI" src="../assets/VM-fire-loop.gif"></img>
+      <img class="load-flameII" src="../assets/VM-fire-loop.gif"></img>
+    </div>
+  </div>
+
+  <canvas id="grid-bg"></canvas>
+	
+  <div class="cursor"></div>
+
+  <header class="header">
+    <a href="../index.html">
+      <div class="skull">
+        <img class="skullcen" src="../assets/VM-Skull-II.png"></img>
+        <div class="VMwrap">
+          <img class="VMcen" src="../assets/VANGUARDmarquee.png" alt="">
+        </div>
+        <img class="flame" src="../assets/VM-fire-loop-BW.gif"></img>
+      </div>
+    </a>
+    <div class="menu">
+      <a href="../inventory/index.html" class="logo">INVENTORY</span></a>
+      <a href="#" class="logo current">SELL YOUR CAR</span></a>
+      <a href="../360/index.html" class="logo">360°</span></a>
+      <a href="../index.html" class="logo ozero">VM</a>
+      <a href="../news/index.html" class="logo">NEWS</span></a>
+      <a href="../about/index.html" class="logo">ABOUT US</span></a>
+      <a href="../contact/index.html" class="logo">CONTACT</span></a>
+    </div>
+  </header>
+      <div class="mb"><span>MENU</span></div>
+      <div class="mob-menu">
+        <div class="mob-menu-inner">
+          <a href="../index.html" class="mob-logo">VANGUARD</a> <br>
+          <a href="../inventory/index.html" class="mob-logo">INVENTORY</span></a> <br>
+          <a href="#" class="mob-logo crnt">SELL YOUR CAR</span></a> <br>
+          <a href="../360/index.html" class="mob-logo">360°</span></a> <br>
+          <a href="../news/index.html" class="mob-logo">NEWS</span></a> <br>
+          <a href="../about/index.html" class="mob-logo">ABOUT US</span></a> <br>
+          <a href="../contact/index.html" class="mob-logo">CONTACT</span></a> <br>
+        </div>
+      </div>
+
+  <!-- Filter + Search -->
+  <section class="controls">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by make or model...">
+    </div>
+    <button id="filterToggle" class="filter-toggle">Filters</button>
+  </section>
+
+  <aside id="filterPanel" class="filter-panel">
+    <div class="filter-header">
+      <h3>Filter Cars</h3>
+      <button id="closeFilter" class="close-filter">✕</button>
+    </div>
+    <div class="filter-group">
+      <label for="year">Year</label>
+      <select id="year">
+        <option value="">All</option>
+        <option>1970</option>
+        <option>1969</option>
+        <option>1968</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="make">Make</label>
+      <select id="make">
+        <option value="">All</option>
+        <option>Chevrolet</option>
+        <option>Ford</option>
+        <option>Dodge</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="model">Model</label>
+      <select id="model">
+        <option value="">All</option>
+        <option>Chevelle SS</option>
+        <option>Mustang Mach 1</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="price">Price</label>
+      <select id="price">
+        <option value="">All</option>
+        <option value="low">Below $100K</option>
+        <option value="mid">$100K - $150K</option>
+        <option value="high">Above $150K</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="sort">Sort By</label>
+      <select id="sort">
+        <option value="">Default</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+      </select>
+    </div>
+    <button id="applyFilter" class="apply-filter">Apply Filters</button>
+  </aside>
+
+  <main class="cars-container">
+    <!-- Car Card -->
+    <div class="car-card magnetic" data-year="2020" data-make="Mclaren" data-model="ELVA" data-price="4199000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Mclaren\ 2020/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Mclaren 2020</h2>
+        <p class="car-desc">MCLAREN ELVA, 2020, FULL OPTIONS, ZERO KM, LIMITED EDITION 1 of 149, THE LIGHTEST ROAD LEGAL MCLAREN EVER</p>
+      </div>
+      <div class="car-info">  
+        <div class="car-price">
+          <span class="price">4,199,000 AED</span>
+          <span class="monthly">Orange</span>
+        </div>
+        <a href="./cars/Mclaren 2020/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+    <div class="car-card magnetic" data-year="2020" data-make="Bugatti" data-model="Chiron" data-price="16399000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Bugatti\ Chiron\ Sport\ 110\ ANS\ 2020/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Bugatti Chiron Sport 110 ANS 2020</h2>
+        <p class="car-desc">110 ANNIVERSARY, GCC, DEALER WARRANTY TILL 2028, DEALER FULL SERVICE HISTORY, IMMACULATE CONDITION</p>
+      </div>
+      <div class="car-info"> 
+        <div class="car-price">
+          <span class="price">16,399,000 AED</span>
+          <span class="monthly">Blue</span>
+        </div>
+        <a href="./cars/Bugatti Chiron Sport 110 ANS 2020/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+	  <div class="car-card magnetic" data-year="2018" data-make="Bugatti" data-model="Chiron" data-price="12999000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Bugatti\ Chiron\ 2018/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Bugatti Chiron 2018</h2>
+        <p class="car-desc">BUGATTI CHIRON, 2018, EXCELLENT CONDITION with 16 CYLINDERS AND 1500HP</p>
+      </div>
+      <div class="car-info">
+        <div class="car-price">
+          <span class="price">12,999,000 AED</span>
+          <span class="monthly">Blue</span>
+        </div>
+        <a href="./cars/Bugatti Chiron 2018/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+	  <div class="car-card magnetic" data-year="2025" data-make="Mercedes" data-model="Benz" data-price="4599000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Mercedes-Benz\ 2025/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Mercedes-Benz 2025</h2>
+        <p class="car-desc">MERCEDES AMG PURESPEED LIMITED EDITION 1 OF 250, 2025, GCC, DEALER WARRANTY AND SERVICE CONTRACT, ZERO KM</p>
+      </div>
+      <div class="car-info">
+        <div class="car-price">
+          <span class="price">4,599,000 AED</span>
+          <span class="monthly">Matt Silver</span>
+        </div>
+        <a href="./cars/Mercedes-Benz 2025/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+	  <div class="car-card magnetic" data-year="2018" data-make="Rolls Royce" data-model="DAWN" data-price="1419000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Rolls\ Royce\ DAWN\ ONYX\ 2018/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Rolls Royce DAWN ONYX 2018</h2>
+        <p class="car-desc">ROLLS ROYCE DAWN BLACK BADGE ONYX, 2018, FULLY LOADED, EXCELLENT CONDITION</p>
+      </div>
+      <div class="car-info"> 
+        <div class="car-price">
+          <span class="price">1,419,000 AED</span>
+          <span class="monthly">Black</span>
+        </div>
+        <a href="./cars/Rolls Royce DAWN ONYX 2018/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+    <div class="car-card magnetic" data-year="2025" data-make="Land Rover" data-model="DEFENDER" data-price="449000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Land\ Rover\ DEFENDER\ 90\ 2025/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Land Rover DEFENDER 90 2025</h2>
+        <p class="car-desc">LAND ROVER DEFENDER V6 2 DOORS 2025, GCC SPEC, DEALER WARRANTY AND SERVICE CONTRACT</p>
+      </div>
+      <div class="car-info"> 
+        <div class="car-price">
+          <span class="price">449,000 AED</span>
+          <span class="monthly">Green</span>
+        </div>
+        <a href="./cars/Land Rover DEFENDER 90 2025/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+    <div class="car-card magnetic" data-year="2023" data-make="Lamborghini" data-model="URUS" data-price="1199000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Lamborghini\ URUS\ PERFORMANTE\ 2023/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Lamborghini URUS PERFORMANTE 2023</h2>
+        <p class="car-desc">LAMBORGHINI URUS PERFORMANTE  2023 FULL OPTIONS EXCELLENT CONDITION</p>
+      </div>
+      <div class="car-info"> 
+        <div class="car-price">
+          <span class="price">1,199,000 AED</span>
+          <span class="monthly">Green</span>
+        </div>
+        <a href="./cars/Lamborghini URUS PERFORMANTE 2023/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+    <div class="car-card magnetic" data-year="2025" data-make="Ferrari" data-model="PUROSANGUE" data-price="2699000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Ferrari\ PUROSANGUE\ 2025/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Ferrari PUROSANGUE 2025</h2>
+        <p class="car-desc">FERRARI PUROSANGUE, 2025 FULLY LOADED</p>
+      </div>
+      <div class="car-info">  
+        <div class="car-price">
+          <span class="price">2,699,000 AED</span>
+          <span class="monthly">Black</span>
+        </div>
+        <a href="./cars/Ferrari PUROSANGUE 2025/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+
+    <div class="car-card magnetic" data-year="2019" data-make="Koenigsegg" data-model="Regera" data-price="11299000">
+      <div class="car-info">
+        <div class="car-img" style="background-image: url('./cars/Koenigsegg\ Regera\ 2019/assets/img1.jpeg');"></div>
+        <span class="tag">NEW ARRIVAL</span>
+        <h2 class="car-title">Koenigsegg Regera 2019</h2>
+        <p class="car-desc">KOENIGSEGG REGERA, 2019, FULLY LOADED, IMMACULATE CONDITION</p>
+      </div>
+      <div class="car-info">
+        <div class="car-price">
+          <span class="price">11,299,000 AED</span>
+          <span class="monthly">Yellow</span>
+        </div>
+        <a href="./cars/Koenigsegg Regera 2019/index.html" class="details-btn" target="_blank">VIEW DETAILS</a>
+      </div>
+    </div>
+    
+  </main>
+  <footer class="footer">
+    <div class="marquee-trial-footer">
+      <div class="marquee-trial-content-footer">
+        <span>
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; impulse &nbsp; • &nbsp; independent showroom &nbsp; • &nbsp;
+            you can't download the experience &nbsp;
+        </span>
+      </div>
+    </div>
+    <div class="footer-address"><img src="../assets/VM logo.png" alt="bbb"></div>
+    <p> <a target="_blank" title="Directions" href="https://maps.app.goo.gl/99v12SwrGb9S5Abj9">Near Mashreq Bank , Sheikh Zayed Road, Dubai</a> 
+        • 
+        Phone: <a title="Call Us" href="tel:+971 4 323 2999">+971 4 323 2999</a> 
+        <br> • <br>
+        © 2026 <strong>VIP motors</strong>. All Rights Reserved.</p>
+  </footer>
+
+  <script src="./js/base.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const skull = document.querySelector('.skull');
+    const strength = 50; // distance intensity (higher = stronger)
+    const ease = 0.2; // motion smoothness
+    
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      const rect = skull.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // distance from center
+      mouseX = (e.clientX - centerX) / strength;
+      mouseY = (e.clientY - centerY) / strength;
+    });
+    
+    function animate() {
+      // smooth lerp motion
+      targetX += (mouseX - targetX) * ease;
+      targetY += (mouseY - targetY) * ease;
+      
+      gsap.to(skull, {
+        x: targetX,
+        y: targetY,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // smooth marquee speed switch
+
+    const spin = gsap.to(".VMcen", {
+      rotation: -360,
+      repeat: -1,
+      ease: "none",
+      duration: 20,
+      transformOrigin: "50% 50%",
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseenter", () => {
+      gsap.to(spin, { timeScale: 5, duration: 1, ease: "power2.out" }); // speed up smoothly
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseleave", () => {
+      gsap.to(spin, { timeScale: 1, duration: 1.2, ease: "power2.inOut" }); // slow down smoothly
+    });
+
+    // FLOAT + DEFORMATION FOR DESKTOP MENU
+    const deskLogos = document.querySelectorAll(".menu .logo");
+    
+    deskLogos.forEach((logo) => engineIdleDesk(logo));
+    
+    function engineIdleDesk(el) {
+      gsap.to(el, {
+        x: () => gsap.utils.random(-10, 10),          // tiny sway
+        y: () => gsap.utils.random(-5, 5),          // subtle bounce
+        rotation: () => gsap.utils.random(-5, 5),   // micro tilt
+        scaleX: () => gsap.utils.random(0.985, 1.02), // gentle squish
+        scaleY: () => gsap.utils.random(0.985, 1.02), // gentle stretch
+        duration: () => gsap.utils.random(0.10, 0.20), // slightly slower than mobile
+        ease: "none",
+        yoyo: true,
+        repeat: -1
+      });
+    }
+
+     
+    // HEADER HOVER EFFECT - DESKTOP ONLY
+    const header = document.querySelector('.header');
+    
+    // Only enable if screen is wider than 768px
+    if (window.innerWidth > 768) {
+      window.addEventListener('mousemove', (e) => {
+        if (e.clientY <= 300) {
+          header.classList.add('active');
+        } else {
+          header.classList.remove('active');
+        }
+      });
+    }
+    
+    // MOBILE version
+    // Disable skull link on mobile only
+    const skullLink = document.querySelector('.header > a');
+    
+    if (window.innerWidth <= 768) {
+      skullLink.addEventListener('click', (e) => {
+        e.preventDefault(); // stop redirect
+      });
+    }
+    
+    // MOBILE MENU
+    const mb = document.querySelector('.mb');
+    const mobMenu = document.querySelector('.mob-menu');
+    const mobLinks = document.querySelectorAll('.mob-menu-inner .mob-logo');
+    let menuOpen = false;
+    
+    mb.addEventListener('click', () => {
+    
+      // Toggle the strike-through line on the button
+      mb.classList.toggle("open");
+    
+      if (!menuOpen) {
+        // OPEN menu smoothly with overshoot
+        gsap.to(mobMenu, { left: '22%', duration: 0.8, ease: 'power4.out' });
+        gsap.to(mb, { right: '77%', duration: 0.8, ease: 'power4.out' });
+        
+        // Stagger link animation
+        gsap.fromTo(mobLinks, 
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, delay: 0.2, ease: 'power2.out' }
+        );
+    
+      } else {
+        // CLOSE menu smoothly
+        gsap.to(mobMenu, { left: '100%', duration: 0.7, ease: 'power2.in' });
+        gsap.to(mb, { right: '-1%', duration: 0.7, ease: 'power2.in' });
+        
+        // Fade out links fast
+        gsap.to(mobLinks, { opacity: 0, y: 20, duration: 0.3, ease: 'power2.in' });
+      }
+    
+      menuOpen = !menuOpen;
+    });
+    
+    // FLOAT + DEFORMATION RANDOM
+    const logos = document.querySelectorAll(".mob-logo");
+    logos.forEach((logo) => engineIdle(logo));
+    
+    function engineIdle(el) {
+      gsap.to(el, {
+        x: () => gsap.utils.random(-5, 2),         // tiny side shake
+        y: () => gsap.utils.random(-3, 3),         // vertical vibration
+        rotation: () => gsap.utils.random(-3, 3),  // slight twist
+        scaleX: () => gsap.utils.random(0.97, 1.03), // subtle horizontal squish
+        scaleY: () => gsap.utils.random(0.97, 1.03), // subtle vertical stretch
+        duration: () => gsap.utils.random(0.08, 0.16),
+        ease: "none",
+        yoyo: true,
+        repeat: -1
+      });
+    }
+  </script>
+
+</body>
+</html>

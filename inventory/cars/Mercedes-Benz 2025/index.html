@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car | VANGUARD</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="shortcut icon" href="../../../assets/VM logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" sr="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  </head>
+  <body class="before-load">
+	  <div class="loading">
+      <div class="loading-circle">
+      <p class="backp">V I P</p>
+      </div>
+    </div>
+
+	<canvas id="grid-bg"></canvas>
+
+    <header class="header">
+      <a href="../../../index.html">
+        <div class="skull">
+          <img class="skullcen" src="../../../assets/VM-Skull-II.png"></img>
+          <div class="VMwrap">
+            <img class="VMcen" src="../../../assets/VANGUARDmarquee.png" alt="">
+          </div>
+        </div>
+      </a>
+      <div class="menu">
+        <a href="../../index.html" class="logo">INVENTORY</span></a>
+        <a href="../../../sell your car/index.html" class="logo">SELL YOUR CAR</span></a>
+        <a href="../../../index.html" class="logo ozero">VM</a>
+        <a href="../../../news/index.html" class="logo">NEWS</span></a>
+        <a href="../../../about/index.html" class="logo">ABOUT US</span></a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="car">
+        <div class="car-details">
+          <h1 class="model-name">Mercedes-AMG PureSpeed 2025</h1>
+          <p class="car-year">2025</p>
+          <p class="car-price">AED 4,599,000</p>
+          <ul class="car-specs">
+            <li>0 KILOMETERS</li>
+            <li>GCC SPEC - 1 OF 250 LIMITED EDITION</li>
+            <li>8 Cylinders, 4.0 L Twin-Turbocharged Gasoline</li>
+            <li>585 hp / 800 Nm Torque</li>
+            <li>0-100 (km/h) in 3.6 s</li>
+            <li>Top Speed: 315 km/h</li>
+          </ul>
+          <p class="car-highlight">A bold tribute to motorsport — the first of the Mythos series, featuring a Formula 1 HALO protection system and a radical roofless design that bridges the gap between a luxury roadster and a purebred race car.</p>
+            <div class="car-order">
+              <a href="tel:+971 4 323 2999" target="_blank" class="car-order-w">
+                <h1 class="cob">GET IN TOUCH</h1>
+              </a>
+            </div>
+          </div>
+
+        <div class="triangle-up"></div>
+        <div class="triangle-up"></div>
+        <div class="ocdtls"><div class="hov-bg"></div> Details</div>
+        
+      </div>
+
+      <div class="img-preview">
+        <img src="./assets/img1.jpeg" alt="preview" />
+        <video src="" muted autoplay loop playsinline></video>
+        <iframe src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      
+      <div class="minimap">
+        <div class="indicator"></div>
+        <div class="items">
+          
+          <div class="item"><img src="./assets/img1.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img2.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img3.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img4.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img5.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img6.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img7.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img8.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img9.jpeg" alt="" /></div>
+          <div class="item"><img src="./assets/img10.jpeg" alt="" /></div>
+          <!--<div class="item"> <img  src="https://img.youtube.com/vi/e9tpY0hxR_A/hqdefault.jpg" data-src="https://youtu.be/e9tpY0hxR_A" alt="" /> </div>-->
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      const skull = document.querySelector('.skull');
+      const strength = 50; // distance intensity (higher = stronger)
+      const ease = 0.2; // motion smoothness
+      
+      let mouseX = 0, mouseY = 0;
+      let targetX = 0, targetY = 0;
+      
+      document.addEventListener('mousemove', (e) => {
+        const rect = skull.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // distance from center
+        mouseX = (e.clientX - centerX) / strength;
+        mouseY = (e.clientY - centerY) / strength;
+      });
+      
+      function animate() {
+        // smooth lerp motion
+        targetX += (mouseX - targetX) * ease;
+        targetY += (mouseY - targetY) * ease;
+        
+        gsap.to(skull, {
+          x: targetX,
+          y: targetY,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+      
+      // smooth marquee speed switch
+  
+      const spin = gsap.to(".VMcen", {
+        rotation: -360,
+        repeat: -1,
+        ease: "none",
+        duration: 20,
+        transformOrigin: "50% 50%",
+      });
+      
+      document.querySelector(".skullcen").addEventListener("mouseenter", () => {
+        gsap.to(spin, { timeScale: 5, duration: 1, ease: "power2.out" }); // speed up smoothly
+      });
+      
+      document.querySelector(".skullcen").addEventListener("mouseleave", () => {
+        gsap.to(spin, { timeScale: 1, duration: 1.2, ease: "power2.inOut" }); // slow down smoothly
+      });
+      
+      // MOBILE version
+      // Disable skull link on mobile only
+      const skullLink = document.querySelector('.header > a');
+      
+      if (window.innerWidth <= 768) {
+        skullLink.addEventListener('click', (e) => {
+          e.preventDefault(); // stop redirect
+        });
+      }
+
+      
+      const dtls = document.querySelectorAll('.triangle-up');
+      const xbg = document.querySelector('.hov-bg');
+      const car = document.querySelector('.car');
+      let menuOpen = false;
+      
+      // 1. Assign the floating animation to a variable so we can control it
+      const hoverTween = gsap.to(dtls, {
+        y: -15,
+        opacity: 0,
+        duration: .5, // .5 was likely too fast to see clearly
+        repeat: -1,
+        stagger: 0.2,  // Reduced stagger for better flow
+        ease: "power1.out"
+      });
+      
+      // 2. Click Logic
+      let mm = gsap.matchMedia();
+      mm.add({
+        // Define your breakpoints
+        isDesktop: "(min-width: 1300px)",
+        isMobile: "(max-width: 1000px)",
+        isShort: "(max-height: 800px)" 
+      }, (context) => {
+        let { isDesktop, isMobile, isShort } = context.conditions;
+      
+        dtls.forEach(triangle => {
+          triangle.addEventListener('click', () => {
+            if (!menuOpen) {
+              hoverTween.pause();
+              gsap.set(dtls, { y: 0, opacity: 1 });
+      
+              // RESPONSIVE LOGIC:
+              let topValue = isDesktop ? '50%' : '20%'; 
+              if (isMobile) topValue = '40%'; // Adjust for landscape phones
+              if (isShort) topValue = '25%'; // Adjust for landscape phones
+      
+              gsap.to(car, { top: topValue, duration: 1, ease: 'power4.out' });
+              gsap.to(dtls, { rotation: 180, duration: 1, ease: 'power4.out' });
+              gsap.to(xbg, { opacity: 1, duration: 1, ease: 'power4.out' });
+            } else {
+              // Close logic...
+              gsap.to(car, { top: '100%', duration: 1, ease: 'power4.out' });
+              gsap.to(dtls, { rotation: 0, duration: 1, ease: 'power4.out', onComplete: () => hoverTween.play() });
+              gsap.to(xbg, { opacity: 0, duration: 1, ease: 'power4.out' });
+            }
+            menuOpen = !menuOpen;
+          });
+        });
+      });
+
+    </script>
+
+    <script src="../script.js"></script>
+
+  </body>
+</html>

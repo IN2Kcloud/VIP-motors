@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Sell Your Car | VIP motors</title>
+  <meta name="author" content="EL-KABOOS" />
+	<link rel="shortcut icon" href="../assets/vmLOGO.svg">
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+<body class="before-load">
+  <div class="loading">
+    <div class="load-skull">
+      <img class="load-skullcen" src="../assets/VM-Skull-II.webp"></img>
+      <div class="load-VMwrap">
+        <img class="load-VMcen" src="../assets/VANGUARDmarquee.webp" alt="">
+      </div>
+      <img class="load-flameI" src="../assets/VM-fire-loop.gif"></img>
+      <img class="load-flameII" src="../assets/VM-fire-loop.gif"></img>
+    </div>
+  </div>
+
+  <canvas id="grid-bg"></canvas>
+	
+  <div class="cursor"></div>
+
+  <header class="header">
+    <a href="../index.html">
+      <div class="skull">
+        <img class="skullcen" src="../assets/VM-Skull-II.png"></img>
+        <div class="VMwrap">
+          <img class="VMcen" src="../assets/VANGUARDmarquee.png" alt="">
+        </div>
+        <img class="flame" src="../assets/VM-fire-loop-BW.gif"></img>
+      </div>
+    </a>
+    <div class="menu">
+      <a href="../inventory/index.html" class="logo">INVENTORY</span></a>
+      <a href="#" class="logo current">SELL YOUR CAR</span></a>
+      <a href="../360/index.html" class="logo">360°</span></a>
+      <a href="../index.html" class="logo ozero">VM</a>
+      <a href="../news/index.html" class="logo">NEWS</span></a>
+      <a href="../about/index.html" class="logo">ABOUT US</span></a>
+      <a href="../contact/index.html" class="logo">CONTACT</span></a>
+    </div>
+  </header>
+      <div class="mb"><span>MENU</span></div>
+      <div class="mob-menu">
+        <div class="mob-menu-inner">
+          <a href="../index.html" class="mob-logo">VANGUARD</a> <br>
+          <a href="../inventory/index.html" class="mob-logo">INVENTORY</span></a> <br>
+          <a href="#" class="mob-logo crnt">SELL YOUR CAR</span></a> <br>
+          <a href="../360/index.html" class="mob-logo">360°</span></a> <br>
+          <a href="../news/index.html" class="mob-logo">NEWS</span></a> <br>
+          <a href="../about/index.html" class="mob-logo">ABOUT US</span></a> <br>
+          <a href="../contact/index.html" class="mob-logo">CONTACT</span></a> <br>
+        </div>
+      </div>
+
+  <main class="page-wrap">
+
+    <!-- Hero / Intro -->
+    <section class="hero">
+      <div class="hero-left">
+        <!--<h1>WE WANT TO BUY YOUR CAR</h1>-->
+        <div class="marquee-trial fade-sides">
+          <div class="marquee-trial-content">
+            <span>
+              &nbsp; WANNA SELL YOUR CAR ! &nbsp; • &nbsp; WE CAN HELP YOU &nbsp; • &nbsp; WANNA SELL YOUR CAR ! &nbsp; • &nbsp; WE CAN HELP YOU &nbsp; • 
+              &nbsp; WANNA SELL YOUR CAR ! &nbsp; • &nbsp; WE CAN HELP YOU &nbsp; • &nbsp; WANNA SELL YOUR CAR ! &nbsp; • &nbsp; WE CAN HELP YOU &nbsp; • 
+              &nbsp; WANNA SELL YOUR CAR ! &nbsp; • &nbsp; WE CAN HELP YOU &nbsp; • &nbsp;
+            </span>
+          </div>
+        </div>
+
+        <h3>WANNA SELL YOUR CAR !</h3>
+
+        <div class="steps-wrapper">
+          <ol class="steps">
+            <li data-img="./images/1.webp" data-text="Contact our team via the form to start the process.">FILL THE FORM</li>
+            <li data-img="./images/2.webp" data-text="Send us your car’s photos and basic information.">SEND US YOUR VEHICLE PHOTOS AND INFO</li>
+            <li data-img="./images/3.webp" data-text="We’ll evaluate your vehicle.">WE REVERT YOU BACK WITH AN ESTIMATED APPRAISSAL</li>
+          </ol>
+        
+          <div class="step-visual">
+            <img id="step-img" src="media/step1.jpg" alt="Step image">
+            <p id="step-text">Hover to begin the process.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right column: form -->
+      <aside class="hero-right">
+        <h2>Sell Your Vehicle Form</h2>
+        <p class="form-note">* = Required Fields</p>
+
+        <form id="sellForm" class="sell-form" novalidate>
+          <fieldset>
+            <legend>Vehicle Information</legend>
+
+            <div class="grid-3">
+              <label>Year *<input type="number" name="year" id="year" required min="1900" max="2099" inputmode="numeric" required /></label>
+              <label>Make *<input type="text" name="make" id="make" placeholder="Select Make" required /></label>
+              <label>Model *<input type="text" name="model" id="model" placeholder="Select Model" required /></label>
+            </div>
+
+            <label>VIN<input type="text" name="vin" id="vin" placeholder="Vehicle VIN" maxlength="24" /></label>
+
+            <div class="grid-2">
+              <label>Asking Price *<input type="number" name="price" id="price" required inputmode="numeric" required /></label>
+              <label>Mileage<input type="number" name="mileage" id="mileage" inputmode="numeric" required /></label>
+            </div>
+
+            <div class="grid-3">
+              <label>Exterior color<input type="text" name="color" id="color" required /></label>
+              <label>Interior color<input type="text" name="color" id="color" required /></label>
+              <label>Owner<input type="text" name="Owner" id="Owner" required /></label>
+            </div>
+
+            <div id="preview" class="preview-grid" aria-live="polite"></div>
+          </fieldset>
+          
+          <fieldset>
+            <legend>Vehicle Condition</legend>
+  
+            <div class="vehicle-condition-unit">
+					  	<div class="title h5">What is the Exterior Condition?</div>
+					  	<label class="condition"><input type="radio" name="exterior_condition" value="Extra clean" checked="">Extra clean</label>
+					  	<label class="condition"><input type="radio" name="exterior_condition" value="Clean">Clean</label>
+					  	<label class="condition"><input type="radio" name="exterior_condition" value="Average">Average</label>
+					  	<label class="condition"><input type="radio" name="exterior_condition" value="Below Average">Below Average</label>
+					  	<label class="condition"><input type="radio" name="exterior_condition" value="I don't know">I don't know</label>
+					  </div>
+  
+            <div class="vehicle-condition-unit">
+					  	<div class="title h5">What is the Interior Condition?</div>
+					  	<label class="condition"><input type="radio" name="interior_condition" value="Extra clean" checked="">Extra clean</label>
+					  	<label class="condition"><input type="radio" name="interior_condition" value="Clean">Clean</label>
+					  	<label class="condition"><input type="radio" name="interior_condition" value="Average">Average</label>
+					  	<label class="condition"><input type="radio" name="interior_condition" value="Below Average">Below Average</label>
+					  	<label class="condition"><input type="radio" name="interior_condition" value="I don't know">I don't know</label>
+					  </div>
+  
+            <div class="vehicle-condition-unit">
+					  	<div class="title h5">Has vehicle been in accident</div>
+					  	<label class="condition"><input type="radio" name="accident" value="Yes">Yes</label>
+					  	<label class="condition"><input type="radio" name="accident" value="No" checked="">No</label>
+					  	<label class="condition"><input type="radio" name="accident" value="I don't know">I don't know</label>
+					  </div>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact Details</legend>
+            <div class="grid-2">
+              <label>First Name *<input type="text" id="firstName" name="firstName" required /></label>
+              <label>Last Name *<input type="text" id="lastName" name="lastName" required /></label>
+            </div>
+
+            <div class="grid-2">
+              <label>Email Address *<input type="email" id="email" name="email" required /></label>
+              <label>Phone Number *<input type="tel" id="phone" name="phone" required /></label>
+            </div>
+
+            <label>Vehicle Description
+              <textarea name="description" id="description" rows="4" placeholder="Vehicle Description"></textarea>
+            </label>
+
+            <label class="file-label">
+              Upload Vehicle Photos (.JPEG and .JPG Only) — DO NOT upload PDFs or Word docs
+              <input id="images" name="images" type="file" accept=".jpg,.jpeg,image/jpeg" multiple>
+              <small class="file-hint">Click to upload photos — max 12 files</small>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" id="newsletter" name="newsletter" />
+              Sign Up for Newsletter
+            </label>
+
+            <button type="submit" class="submit-btn">SUBMIT YOUR VEHICLE</button>
+          </fieldset>
+        </form>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="marquee-trial-footer">
+      <div class="marquee-trial-content-footer">
+        <span>
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; impulse &nbsp; • &nbsp; independent showroom &nbsp; • &nbsp;
+            you can't download the experience &nbsp;
+        </span>
+      </div>
+    </div>
+    <div class="footer-address"><img src="../assets/VM logo.png" alt="bbb"></div>
+    <p> <a target="_blank" title="Directions" href="https://maps.app.goo.gl/99v12SwrGb9S5Abj9">Near Mashreq Bank , Sheikh Zayed Road, Dubai</a> 
+        • 
+        Phone: <a title="Call Us" href="tel:+971 4 323 2999">+971 4 323 2999</a> 
+        <br> • <br>
+        © 2026 <strong>VIP motors</strong>. All Rights Reserved.</p>
+  </footer>
+
+  <script src="./js/base.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const skull = document.querySelector('.skull');
+    const strength = 50; // distance intensity (higher = stronger)
+    const ease = 0.2; // motion smoothness
+    
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      const rect = skull.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // distance from center
+      mouseX = (e.clientX - centerX) / strength;
+      mouseY = (e.clientY - centerY) / strength;
+    });
+    
+    function animate() {
+      // smooth lerp motion
+      targetX += (mouseX - targetX) * ease;
+      targetY += (mouseY - targetY) * ease;
+      
+      gsap.to(skull, {
+        x: targetX,
+        y: targetY,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // smooth marquee speed switch
+
+    const spin = gsap.to(".VMcen", {
+      rotation: -360,
+      repeat: -1,
+      ease: "none",
+      duration: 20,
+      transformOrigin: "50% 50%",
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseenter", () => {
+      gsap.to(spin, { timeScale: 5, duration: 1, ease: "power2.out" }); // speed up smoothly
+    });
+    
+    document.querySelector(".skullcen").addEventListener("mouseleave", () => {
+      gsap.to(spin, { timeScale: 1, duration: 1.2, ease: "power2.inOut" }); // slow down smoothly
+    });
+
+    // FLOAT + DEFORMATION FOR DESKTOP MENU
+    const deskLogos = document.querySelectorAll(".menu .logo");
+    
+    deskLogos.forEach((logo) => engineIdleDesk(logo));
+    
+    function engineIdleDesk(el) {
+      gsap.to(el, {
+        x: () => gsap.utils.random(-10, 10),          // tiny sway
+        y: () => gsap.utils.random(-5, 5),          // subtle bounce
+        rotation: () => gsap.utils.random(-5, 5),   // micro tilt
+        scaleX: () => gsap.utils.random(0.985, 1.02), // gentle squish
+        scaleY: () => gsap.utils.random(0.985, 1.02), // gentle stretch
+        duration: () => gsap.utils.random(0.10, 0.20), // slightly slower than mobile
+        ease: "none",
+        yoyo: true,
+        repeat: -1
+      });
+    }
+
+     
+    // HEADER HOVER EFFECT - DESKTOP ONLY
+    const header = document.querySelector('.header');
+    
+    // Only enable if screen is wider than 768px
+    if (window.innerWidth > 768) {
+      window.addEventListener('mousemove', (e) => {
+        if (e.clientY <= 300) {
+          header.classList.add('active');
+        } else {
+          header.classList.remove('active');
+        }
+      });
+    }
+    
+    // MOBILE version
+    // Disable skull link on mobile only
+    const skullLink = document.querySelector('.header > a');
+    
+    if (window.innerWidth <= 768) {
+      skullLink.addEventListener('click', (e) => {
+        e.preventDefault(); // stop redirect
+      });
+    }
+
+    const mb = document.querySelector('.mb');
+    const mobMenu = document.querySelector('.mob-menu');
+    const mobLinks = document.querySelectorAll('.mob-menu-inner .mob-logo');
+    let menuOpen = false;
+    
+    mb.addEventListener('click', () => {
+    
+      // Toggle the strike-through line on the button
+      mb.classList.toggle("open");
+    
+      if (!menuOpen) {
+        // OPEN menu smoothly with overshoot
+        gsap.to(mobMenu, { left: '22%', duration: 0.8, ease: 'power4.out' });
+        gsap.to(mb, { right: '77%', duration: 0.8, ease: 'power4.out' });
+        
+        // Stagger link animation
+        gsap.fromTo(mobLinks, 
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, delay: 0.2, ease: 'power2.out' }
+        );
+    
+      } else {
+        // CLOSE menu smoothly
+        gsap.to(mobMenu, { left: '100%', duration: 0.7, ease: 'power2.in' });
+        gsap.to(mb, { right: '-1%', duration: 0.7, ease: 'power2.in' });
+        
+        // Fade out links fast
+        gsap.to(mobLinks, { opacity: 0, y: 20, duration: 0.3, ease: 'power2.in' });
+      }
+    
+      menuOpen = !menuOpen;
+    });
+    
+    // FLOAT + DEFORMATION RANDOM
+    const logos = document.querySelectorAll(".mob-logo");
+    logos.forEach((logo) => engineIdle(logo));
+    
+    function engineIdle(el) {
+      gsap.to(el, {
+        x: () => gsap.utils.random(-5, 2),         // tiny side shake
+        y: () => gsap.utils.random(-3, 3),         // vertical vibration
+        rotation: () => gsap.utils.random(-3, 3),  // slight twist
+        scaleX: () => gsap.utils.random(0.97, 1.03), // subtle horizontal squish
+        scaleY: () => gsap.utils.random(0.97, 1.03), // subtle vertical stretch
+        duration: () => gsap.utils.random(0.08, 0.16),
+        ease: "none",
+        yoyo: true,
+        repeat: -1
+      });
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const steps = document.querySelectorAll(".steps li");
+  const img = document.getElementById("step-img");
+  const text = document.getElementById("step-text");
+  let tl = null;
+  let isHovered = false;
+
+  const updateVisual = (step) => {
+    const newImg = step.dataset.img;
+    const newText = step.dataset.text;
+
+    img.classList.remove("visible");
+    text.classList.remove("visible");
+
+    setTimeout(() => {
+      img.src = newImg;
+      text.textContent = newText;
+      img.classList.add("visible");
+      text.classList.add("visible");
+    }, 300);
+  };
+
+  // Auto animation timeline
+  const startAutoSequence = () => {
+    if (tl) tl.kill();
+    tl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+
+    steps.forEach((step, i) => {
+      tl.to(step, {
+        onStart: () => {
+          if (isHovered) return; // Pause if hovering a step
+          steps.forEach(s => s.classList.remove("active"));
+          step.classList.add("active");
+          updateVisual(step);
+        },
+        duration: 0.5,
+        delay: 0.4,
+      });
+    });
+  };
+
+  // Manual control on hover
+  steps.forEach(step => {
+    step.addEventListener("mouseenter", () => {
+      isHovered = true;
+      if (tl) tl.pause();
+
+      steps.forEach(s => s.classList.remove("active"));
+      step.classList.add("active");
+      updateVisual(step);
+    });
+
+    step.addEventListener("mouseleave", () => {
+      isHovered = false;
+      if (tl) tl.resume();
+    });
+  });
+
+  // Start automatically
+  startAutoSequence();
+});
+</script>
+
+
+
+</body>
+</html>
