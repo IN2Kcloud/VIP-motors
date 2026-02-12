@@ -22,20 +22,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ========== SCREEN VIEW ========== //
 
-const screenView = document.querySelector('.screen-view');
+const screenElement = document.querySelector('.screen-view');
+const dtls = document.querySelector('.triangle-up'); 
 
-document.addEventListener('mousemove', (e) => {
-  const xPos = (e.clientX / window.innerWidth) - 0.5;
-  const yPos = (e.clientY / window.innerHeight) - 0.5;
+function hyperMotion3D() {
+  const isSpinning = Math.random() > 0.8; // 20% chance for a 360 barrel roll
+  
+  const randomX = (Math.random() - 0.5) * 100;   
+  const randomY = (Math.random() - 0.5) * 80;   
+  const randomZ = isSpinning ? 150 : (Math.random() * 50); // Lunges forward
+  
+  // 3D Rotations
+  const rotX = (Math.random() - 0.5) * 30; // Tilt up/down
+  const rotY = (Math.random() - 0.5) * 30; // Tilt left/right
+  const rotZ = isSpinning ? (Math.random() > 0.5 ? 360 : -360) : (Math.random() - 0.5) * 20;
 
-  gsap.to(screenView, {
-    duration: 0.8,
-    rotationY: xPos * 8, // Tilts up to 8 degrees left/right
-    rotationX: yPos * -8, // Tilts up to 8 degrees up/down
-    ease: "power2.out",
-    transformPerspective: 1000
+  gsap.to(screenElement, {
+    duration: isSpinning ? 1.0 : 1.5,
+    xPercent: -50,
+    yPercent: -50,
+    x: randomX,
+    y: randomY,
+    z: randomZ, // Move toward camera
+    rotationX: rotX,
+    rotationY: rotY,
+    rotationZ: rotZ,
+    transformPerspective: 1200, // The "3D Depth" intensity
+    ease: isSpinning ? "expo.inOut" : "power2.inOut",
+    onComplete: () => {
+      if (isSpinning) {
+        // Reset Z and RotationZ smoothly after the "Impact"
+        gsap.to(screenElement, { z: 0, rotationZ: 0, duration: 0.5 });
+      }
+      hyperMotion3D();
+    }
   });
-});
+
+  // Triangle Reaction
+  if (dtls) {
+    gsap.to(dtls, {
+      duration: 0.8,
+      rotationY: rotY * 3,
+      rotationX: rotX * 3,
+      z: randomZ / 2,
+      ease: "power2.out"
+    });
+  }
+}
+
+hyperMotion3D();
 
 window.addEventListener('load', () => {
   // 1. Existing Loading Logic
@@ -203,21 +238,18 @@ draw();
 
 // ========== SQUARED MARQUEE ========== //
 
-// Repeat the text to ensure it fills the loop
-const textPath = document.querySelector("#marqueeText");
-const originalText = textPath.textContent;
-textPath.textContent = (originalText + " ").repeat(3);
+// Target all text paths
+const allMarquees = document.querySelectorAll(".marquee-path");
 
-// Animate the offset for a continuous loop
-gsap.to("#marqueeText", {
-  attr: { startOffset: "-100%" }, // Move text along the path
-  duration: 100,
-  repeat: -1,
-  ease: "none",
-  onUpdate: function() {
-    // This creates a seamless loop by resetting the offset
-    if (parseFloat(this.targets()[0].getAttribute("startOffset")) >= 100) {
-      gsap.set(this.targets()[0], { attr: { startOffset: "0%" } });
-    }
-  }
+allMarquees.forEach(path => {
+    // Repeat text to fill the square
+    const text = path.textContent;
+    path.textContent = (text + " ").repeat(4);
+
+    gsap.to(path, {
+        attr: { startOffset: "-100%" },
+        duration: 30, // Slowed down for luxury feel
+        repeat: -1,
+        ease: "none"
+    });
 });
