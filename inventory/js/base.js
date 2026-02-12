@@ -36,54 +36,94 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
   }
 });
 
-/*
-const magnets = document.querySelectorAll(".magnetic");
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", e => {
+// Cursor follow =================================================================================
+const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', e => {
   cursor.style.transform = `translate(${e.clientX - 7}px, ${e.clientY - 7}px)`;
 });
 
-magnets.forEach(el => {
-  const strength = 0.3; // smaller movement strength
-  const maxDist = 300; // smaller activation range
-
-  document.addEventListener("mousemove", e => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const dist = Math.sqrt(x * x + y * y);
-
-    if (dist < maxDist) {
-      const pullX = (x / rect.width) * strength * 100;
-      const pullY = (y / rect.height) * strength * 100;
-      el.style.transform = `translate(${pullX}px, ${pullY}px) scale(1.03)`;
-    } else {
-      el.style.transform = `translate(0, 0) scale(1)`;
-    }
-  });
-});
-*/
-
 // === Filter Panel Toggle ===
-const filterToggle = document.getElementById('filterToggle');
 const filterPanel = document.getElementById('filterPanel');
-const closeFilter = document.getElementById('closeFilter');
-
-filterToggle.onclick = () => filterPanel.classList.add('active');
-closeFilter.onclick = () => filterPanel.classList.remove('active');
-
-// === Search Functionality ===
-const searchInput = document.getElementById('searchInput');
+const filterOverlay = document.getElementById('filterOverlay');
 const carCards = document.querySelectorAll('.car-card');
+const noResults = document.getElementById('noResults');
 
-searchInput.addEventListener('input', e => {
-  const term = e.target.value.toLowerCase();
-  carCards.forEach(card => {
-    const title = card.querySelector('.car-title').textContent.toLowerCase();
-    card.style.display = title.includes(term) ? 'flex' : 'none';
-  });
-});
+// Toggle UI
+function toggleFilters(open) {
+    filterPanel.classList.toggle('active', open);
+    filterOverlay.classList.toggle('active', open);
+    document.body.classList.toggle('no-scroll', open);
+}
+
+document.getElementById('filterToggle').onclick = () => toggleFilters(true);
+document.getElementById('closeFilter').onclick = () => toggleFilters(false);
+filterOverlay.onclick = () => toggleFilters(false);
+
+// Core Filtering Logic
+function runAllFilters() {
+    const searchVal = document.getElementById('searchInput').value.toLowerCase();
+    const makeVal = document.getElementById('make').value;
+    const priceRange = document.getElementById('price').value;
+    
+    let visibleCount = 0;
+
+    carCards.forEach(card => {
+        const cMake = card.dataset.make;
+        const cPrice = parseInt(card.dataset.price);
+        const cTitle = card.querySelector('.car-title').innerText.toLowerCase();
+
+        // Check Search
+        const matchSearch = cTitle.includes(searchVal);
+        // Check Make
+        const matchMake = makeVal === "" || cMake === makeVal;
+        // Check Price Range
+        let matchPrice = true;
+        if (priceRange) {
+            const [min, max] = priceRange.split('-').map(Number);
+            matchPrice = cPrice >= min && cPrice <= max;
+        }
+
+        if (matchSearch && matchMake && matchPrice) {
+            card.style.display = 'flex';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    handleSort();
+}
+
+// Sorting Logic
+function handleSort() {
+    const sortVal = document.getElementById('sort').value;
+    const container = document.querySelector('.cars-container');
+    const cardsArray = Array.from(carCards);
+
+    cardsArray.sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        return sortVal === 'price-low' ? priceA - priceB : priceB - priceA;
+    });
+
+    cardsArray.forEach(card => container.appendChild(card));
+}
+
+// Events
+document.getElementById('applyFilter').onclick = () => {
+    runAllFilters();
+    toggleFilters(false);
+};
+
+document.getElementById('resetFilter').onclick = () => {
+    document.getElementById('make').value = "";
+    document.getElementById('price').value = "";
+    document.getElementById('searchInput').value = "";
+    runAllFilters();
+};
+
+document.getElementById('searchInput').oninput = runAllFilters;
 
 // BG points -----------------------------------------------------------------
 
