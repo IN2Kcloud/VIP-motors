@@ -46,12 +46,9 @@ body {
 .header.active {height: 150px; border-bottom: 2px solid #000;}
 
 .skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer;}
-.skullcen {position: absolute; width: 100%; height: auto; z-index: 3;}
+.skullcen {position: absolute; top: 57%; left: 50%; transform: translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
 .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .VMcen {width: 140%; height: auto;}
-.flameI, .flameII {position: absolute; top: 64%; width: 60%; height: auto; transform: translateY(-50%); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 4;}
-.flameI {left: -48%; transform: translateY(-50%) rotate(-90deg);}
-.flameII {right: -48%; transform: translateY(-50%) rotate(90deg);}
 .skullcen:hover ~ .flameI, .skullcen:hover ~ .flameII {opacity: 1;}
 
 .menu {background-color: #CE1F26; display: flex; justify-content: space-around; align-items: center; width: 100%; height: 100%; z-index: 5; overflow: hidden; opacity: 0; transition: transform .5s ease-in-out, opacity .5s ease;}
@@ -247,14 +244,19 @@ a.content__text-link[data-fx="6"]:hover::after {
   }
 }
 
-
-
-.footer{position:relative;display:flex;flex-direction:column;flex-wrap:wrap;align-items:center;width:100%; background:#fff;color:#000;border-top: 1px solid #000; padding:0 0 1rem;}.footer a{color:#000;text-decoration:none;margin:0 1rem;}.foot-link{display:flex; /*flex-direction:column;*/ justify-content: space-around; width: 100%;}.foot-link a{display:flex;justify-content:space-around;align-items:center;width:100%;padding:0.5em;/*margin:0.5rem;*/border-radius:1rem;color:#000;text-decoration:none;}.foot-copy{width:100%;text-align:center;margin:0rem 0;font-size:10rem;letter-spacing:-2px;line-height:0.9em;}
-.linethrough{margin-bottom: 3px; width: 100vw; display:flex; justify-content: space-around;} .linethrough a{text-decoration:line-through;} .top-plus{margin-top:0;} .tm{font-family:'Noto Sans KR',sans-serif;}
-.foot-link-II span {position: relative; z-index: 1; font-size:2rem;}.foot-link-II span::before {content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: -0.25em; right: -0.25em; background-color: #CE1F26; transform-origin: center right; transform: scaleX(0); transition: transform 0.2s ease-in-out;} .foot-link-II span:hover::before { transform: scaleX(1); transform-origin: center left;}
-.foot-link-III span {position: relative; z-index: 1; font-size:1vw;}.foot-link-III span::before {content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: -0.25em; right: -0.25em; background-color: #CE1F26; transform-origin: center right; transform: scaleX(0); transition: transform 0.2s ease-in-out;} .foot-link-III span:hover::before { transform: scaleX(1); transform-origin: center left;}
-.foot-link-II span:hover {color: #000;}
-.foot-link-III span:hover {color: #000;}
+/* footer */
+.footer{position: relative; background-color: #000;color: #fff; text-align:center;padding:2rem 0;border-top:2px solid #fff; height: 25vh; width: 100vw;}
+.footer p {position: absolute; top: 85%; left: 50%; transform: translate(-50%, -50%);}
+.footer a {color: #fff; text-decoration: underline;}
+.footer-address {width: 10%; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);}
+.footer-address img{width: 100%; height: auto; max-width: 50px;}
+.marquee-trial-footer { position: absolute; top: 0%; width: 100%; margin: 0 auto; padding: 0.2em 0; white-space: nowrap; overflow: hidden; z-index: 0; background: transparent; display: flex; align-items: center; opacity: 1; transition: transform .5s ease-in-out; }
+.marquee-trial-content-footer { display: inline-block; white-space: nowrap; animation: marqueeAnimfooter 60s linear infinite; }
+.marquee-trial-content-footer span { font-family: /*'Mixbox',*/ 'American', 'Morbid', 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; font-weight: 300; color: #fff; font-size: 4em; display: inline-block; padding-right: 2rem; text-shadow: 0 0 0.15em rgba(0, 0, 0, 0.6);/*filter: url(#minFilter);*/ user-select: none; -webkit-user-select: none;/* Safari */ -moz-user-select: none;/* Firefox */ -ms-user-select: none;/* IE/Edge */} 
+@keyframes marqueeAnimfooter { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@media (max-width: 2000px) { .footer {height: 33vh;} .footer-address {top: 50%;} }
+@media (max-width: 800px) { .footer {height: 40vh;} .footer-address {top: 40%;} .footer p {top: 75%;} }
+@media (max-width: 768px) and (max-height: 800px) {.footer {height: 50vh;}}
 
 @media screen and (min-width: 53em) {
 	.block {
@@ -285,10 +287,6 @@ a.content__text-link[data-fx="6"]:hover::after {
 	.block{	flex-direction: column; }
 	.block__title{ font-size: 1.5rem; }
 	.block a { font-size: 1.5rem; }
-	.foot-link { flex-direction: column; }
-	.foot-copy { font-size: 5rem; }
-	.footer a { margin: 0 0; }
-	.foot-link-III span { font-size: 1rem; }
 	.content { padding-top: 0vh; }
 	.play-text { position: absolute; top: 20%; bottom: 20%; left: -5.25em; right: -5.25em; font-size: 1rem; animation: reverseSweep 3s ease-in-out infinite;}
 }
@@ -299,31 +297,6 @@ a.content__text-link[data-fx="6"]:hover::after {
 	.text-container{ top: 3%; }
 }
 @media screen and (max-width: 768px) {
-    .foot-copy {
-        font-size: 2rem; /* Adjust to fit small screens */
-        letter-spacing: -1px;
-    }
-
-    .linethrough {
-        width: 100%; /* Avoid using 100vw to prevent horizontal overflow */
-    }
-
-    .foot-link {
-        flex-direction: column; /* Stack links vertically for mobile */
-        align-items: center;
-    }
-
-    .foot-link a {
-        width: auto; /* Prevent full-width stretching */
-        text-align: center;
-    }
-	.foot-link-II span {
-		font-size: 3vw;
-	}
-
-    .foot-link-III span {
-        font-size: 3vw; /* Use a relative unit that scales better */
-    }
 	html, body {
         max-width: 100vw;
         overflow-x: hidden; /* Force prevent horizontal scroll */
