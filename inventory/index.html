@@ -10,12 +10,10 @@
 <body class="before-load">
   <div class="loading">
     <div class="load-skull">
-      <img class="load-skullcen" src="../assets/VM-Skull-II.webp"></img>
+      <img class="load-skullcen" src="../assets/VM-II.webp"></img>
       <div class="load-VMwrap">
-        <img class="load-VMcen" src="../assets/VANGUARDmarquee.webp" alt="">
+        <img class="load-VMcen" src="../assets/VIPmarquee.webp" alt="">
       </div>
-      <img class="load-flameI" src="../assets/VM-fire-loop.gif"></img>
-      <img class="load-flameII" src="../assets/VM-fire-loop.gif"></img>
     </div>
   </div>
 
@@ -26,16 +24,15 @@
   <header class="header">
     <a href="../index.html">
       <div class="skull">
-        <img class="skullcen" src="../assets/VM-Skull-II.png"></img>
+        <img class="skullcen" src="../assets/VM-II.png"></img>
         <div class="VMwrap">
-          <img class="VMcen" src="../assets/VANGUARDmarquee.png" alt="">
+          <img class="VMcen" src="../assets/VIPmarquee.png" alt="">
         </div>
-        <img class="flame" src="../assets/VM-fire-loop-BW.gif"></img>
       </div>
     </a>
     <div class="menu">
-      <a href="../inventory/index.html" class="logo">INVENTORY</span></a>
-      <a href="#" class="logo current">SELL YOUR CAR</span></a>
+      <a href="" class="logo current">INVENTORY</span></a>
+      <a href="../sell your car/index.html" class="logo">SELL YOUR CAR</span></a>
       <a href="../360/index.html" class="logo">360°</span></a>
       <a href="../index.html" class="logo ozero">VM</a>
       <a href="../news/index.html" class="logo">NEWS</span></a>
@@ -47,8 +44,8 @@
       <div class="mob-menu">
         <div class="mob-menu-inner">
           <a href="../index.html" class="mob-logo">VANGUARD</a> <br>
-          <a href="../inventory/index.html" class="mob-logo">INVENTORY</span></a> <br>
-          <a href="#" class="mob-logo crnt">SELL YOUR CAR</span></a> <br>
+          <a href="" class="mob-logo crnt">INVENTORY</span></a> <br>
+          <a href="../sell your car/index.html" class="mob-logo">SELL YOUR CAR</span></a> <br>
           <a href="../360/index.html" class="mob-logo">360°</span></a> <br>
           <a href="../news/index.html" class="mob-logo">NEWS</span></a> <br>
           <a href="../about/index.html" class="mob-logo">ABOUT US</span></a> <br>
@@ -57,67 +54,70 @@
       </div>
 
   <!-- Filter + Search -->
+  <div id="filterOverlay" class="filter-overlay"></div>
+
   <section class="controls">
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search by make or model...">
+      <input type="text" id="searchInput" placeholder="Search Ferrari, Bugatti, 2025...">
     </div>
-    <button id="filterToggle" class="filter-toggle">Filters</button>
+    <button id="filterToggle" class="filter-toggle">
+      <span>ADVANCED FILTERS</span>
+    </button>
   </section>
-
+  
   <aside id="filterPanel" class="filter-panel">
     <div class="filter-header">
-      <h3>Filter Cars</h3>
+      <h3>Filter Inventory</h3>
       <button id="closeFilter" class="close-filter">✕</button>
     </div>
-    <div class="filter-group">
-      <label for="year">Year</label>
-      <select id="year">
-        <option value="">All</option>
-        <option>1970</option>
-        <option>1969</option>
-        <option>1968</option>
-      </select>
+  
+    <div class="filter-content">
+      <div class="filter-group">
+        <label>Make</label>
+        <select id="make">
+          <option value="">All Makes</option>
+          <option value="Mclaren">Mclaren</option>
+          <option value="Bugatti">Bugatti</option>
+          <option value="Mercedes">Mercedes-Benz</option>
+          <option value="Lamborghini">Lamborghini</option>
+          <option value="Ferrari">Ferrari</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label>Price Range</label>
+        <select id="price">
+          <option value="">All Prices</option>
+          <option value="0-1000000">Under 1M AED</option>
+          <option value="1000000-5000000">1M - 5M AED</option>
+          <option value="5000000-10000000">5M - 10M AED</option>
+          <option value="10000000-99999999">10M+ AED</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label>Sort By</label>
+        <select id="sort">
+          <option value="newest">Newest Arrival</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </div>
     </div>
-    <div class="filter-group">
-      <label for="make">Make</label>
-      <select id="make">
-        <option value="">All</option>
-        <option>Chevrolet</option>
-        <option>Ford</option>
-        <option>Dodge</option>
-      </select>
+  
+    <div class="filter-footer">
+      <button id="applyFilter" class="apply-filter">APPLY FILTERS</button>
+      <button id="resetFilter" class="reset-filter">RESET ALL</button>
     </div>
-    <div class="filter-group">
-      <label for="model">Model</label>
-      <select id="model">
-        <option value="">All</option>
-        <option>Chevelle SS</option>
-        <option>Mustang Mach 1</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label for="price">Price</label>
-      <select id="price">
-        <option value="">All</option>
-        <option value="low">Below $100K</option>
-        <option value="mid">$100K - $150K</option>
-        <option value="high">Above $150K</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label for="sort">Sort By</label>
-      <select id="sort">
-        <option value="">Default</option>
-        <option value="price-low">Price: Low to High</option>
-        <option value="price-high">Price: High to Low</option>
-      </select>
-    </div>
-    <button id="applyFilter" class="apply-filter">Apply Filters</button>
   </aside>
+  
+  <div id="noResults" style="display:none; text-align:center; padding: 5rem; font-family: 'LEMONMILK-Regular', sans-serif;">
+      <h2>No cars match your criteria.</h2>
+  </div>
 
   <main class="cars-container">
     <!-- Car Card -->
-    <div class="car-card magnetic" data-year="2020" data-make="Mclaren" data-model="ELVA" data-price="4199000">
+    <div class="car-card" data-year="2020" data-make="Mclaren" data-model="ELVA" data-price="4199000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Mclaren\ 2020/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -133,7 +133,7 @@
       </div>
     </div>
 
-    <div class="car-card magnetic" data-year="2020" data-make="Bugatti" data-model="Chiron" data-price="16399000">
+    <div class="car-card" data-year="2020" data-make="Bugatti" data-model="Chiron" data-price="16399000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Bugatti\ Chiron\ Sport\ 110\ ANS\ 2020/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -149,7 +149,7 @@
       </div>
     </div>
 
-	  <div class="car-card magnetic" data-year="2018" data-make="Bugatti" data-model="Chiron" data-price="12999000">
+	  <div class="car-card" data-year="2018" data-make="Bugatti" data-model="Chiron" data-price="12999000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Bugatti\ Chiron\ 2018/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -165,7 +165,7 @@
       </div>
     </div>
 
-	  <div class="car-card magnetic" data-year="2025" data-make="Mercedes" data-model="Benz" data-price="4599000">
+	  <div class="car-card" data-year="2025" data-make="Mercedes" data-model="Benz" data-price="4599000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Mercedes-Benz\ 2025/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -181,7 +181,7 @@
       </div>
     </div>
 
-	  <div class="car-card magnetic" data-year="2018" data-make="Rolls Royce" data-model="DAWN" data-price="1419000">
+	  <div class="car-card" data-year="2018" data-make="Rolls Royce" data-model="DAWN" data-price="1419000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Rolls\ Royce\ DAWN\ ONYX\ 2018/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -197,7 +197,7 @@
       </div>
     </div>
 
-    <div class="car-card magnetic" data-year="2025" data-make="Land Rover" data-model="DEFENDER" data-price="449000">
+    <div class="car-card" data-year="2025" data-make="Land Rover" data-model="DEFENDER" data-price="449000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Land\ Rover\ DEFENDER\ 90\ 2025/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -213,7 +213,7 @@
       </div>
     </div>
 
-    <div class="car-card magnetic" data-year="2023" data-make="Lamborghini" data-model="URUS" data-price="1199000">
+    <div class="car-card" data-year="2023" data-make="Lamborghini" data-model="URUS" data-price="1199000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Lamborghini\ URUS\ PERFORMANTE\ 2023/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -229,7 +229,7 @@
       </div>
     </div>
 
-    <div class="car-card magnetic" data-year="2025" data-make="Ferrari" data-model="PUROSANGUE" data-price="2699000">
+    <div class="car-card" data-year="2025" data-make="Ferrari" data-model="PUROSANGUE" data-price="2699000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Ferrari\ PUROSANGUE\ 2025/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
@@ -245,7 +245,7 @@
       </div>
     </div>
 
-    <div class="car-card magnetic" data-year="2019" data-make="Koenigsegg" data-model="Regera" data-price="11299000">
+    <div class="car-card" data-year="2019" data-make="Koenigsegg" data-model="Regera" data-price="11299000">
       <div class="car-info">
         <div class="car-img" style="background-image: url('./cars/Koenigsegg\ Regera\ 2019/assets/img1.jpeg');"></div>
         <span class="tag">NEW ARRIVAL</span>
