@@ -134,49 +134,70 @@ imagesInput.addEventListener('change', (e) => {
 
 // Form validation and demo submission =============================================================
 const form = document.getElementById('sellForm');
+const pv = document.getElementById('pv');
+// Reference to your custom triangle element if needed for UI feedback
+const dtls = document.querySelector('.triangle-up');
 
+// --- PHOTO PREVIEW LOGIC ---
+const imageInput = document.getElementById('images');
+imageInput.addEventListener('change', function() {
+  pv.innerHTML = ''; // Clear current previews
+  const files = Array.from(this.files).slice(0, 12); // Limit to 12
+
+  files.forEach(file => {
+    if (file.type.match('image.*')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.width = '80px';
+        img.style.height = '80px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '4px';
+        pv.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+});
+
+// --- FORM SUBMISSION ---
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // simple required checks
+  // Basic validation
   const required = form.querySelectorAll('[required]');
   for (let el of required) {
-    if(!el.value.trim()){
+    if (!el.value.trim()) {
       el.focus();
-      alert('Please fill all required fields.');
+      alert(`Please fill out the ${el.previousSibling?.textContent || 'required'} field.`);
       return;
     }
   }
 
-  // If you want a real integration, replace this with fetch() to your server endpoint
-  // collect form data
   const fd = new FormData(form);
 
-  // demo: show summary and reset
+  // Data Summary
   const summary = {
-    name: fd.get('firstName') + ' ' + (fd.get('lastName')||''),
+    name: `${fd.get('firstName')} ${fd.get('lastName')}`,
     email: fd.get('email'),
-    phone: fd.get('phone'),
-    vehicle: `${fd.get('year') || ''} ${fd.get('make') || ''} ${fd.get('model') || ''}`,
-    price: fd.get('price') || '',
+    vehicle: `${fd.get('year')} ${fd.get('make')} ${fd.get('model')}`,
+    price: fd.get('price'),
   };
 
-  alert('Thanks! Your vehicle info was submitted.\n\n' +
+  alert('Success!\n' +
         `Name: ${summary.name}\n` +
         `Vehicle: ${summary.vehicle}\n` +
-        `Asking Price: $${summary.price}\n\n` +
-        'Our buy team will contact you shortly.');
+        `Price: $${summary.price}`);
 
   form.reset();
   preview.innerHTML = '';
 });
 
-// Tips video click (placeholder - open a new tab to your actual video)
+// --- TIPS VIDEO (Safeguard) ---
 const tips = document.getElementById('tipsVideo');
-tips.addEventListener('click', () => {
-  window.open('https://www.youtube.com/', '_blank');
-});
-tips.addEventListener('keypress', (e) => {
-  if(e.key === 'Enter' || e.key === ' ') { tips.click(); }
-});
-
+if (tips) {
+  tips.addEventListener('click', () => {
+    window.open('https://www.youtube.com/', '_blank');
+  });
+}
