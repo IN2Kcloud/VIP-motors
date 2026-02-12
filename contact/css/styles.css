@@ -6,6 +6,10 @@
   font-family: 'American';
   src: url('../../assets/American Captain.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Heisenberg';
+  src: url('../../assets/Heisenberg.otf') format('opentype');
+}
 
 #grid-bg {
   position: fixed;
@@ -20,13 +24,9 @@
 .header.active {height: 150px; border-bottom: 2px solid #000;}
 
 .skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer;}
-.skullcen {position: absolute; width: 100%; height: auto; z-index: 3;}
+.skullcen {position: absolute; top: 57%; left: 50%; transform: translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
 .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .VMcen {width: 140%; height: auto;}
-.flameI, .flameII {position: absolute; top: 64%; width: 60%; height: auto; transform: translateY(-50%); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 4;}
-.flameI {left: -48%; transform: translateY(-50%) rotate(-90deg);}
-.flameII {right: -48%; transform: translateY(-50%) rotate(90deg);}
-.skullcen:hover ~ .flameI, .skullcen:hover ~ .flameII {opacity: 1;}
 
 .menu {background-color: #CE1F26; display: flex; justify-content: space-around; align-items: center; width: 100%; height: 100%; z-index: 5; overflow: hidden; opacity: 0; transition: transform .5s ease-in-out, opacity .5s ease;}
 .menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
@@ -86,7 +86,6 @@
   .mob-logo { font-size: 1.5rem; }
 }
 
-
 section{position:relative;width:100vw; min-height:100vh; overflow-x: hidden !important;}
 
 /* S 03 */
@@ -94,7 +93,7 @@ section{position:relative;width:100vw; min-height:100vh; overflow-x: hidden !imp
 /* Filters */
 .max-txt-trial, .min-txt-trial {position: absolute; left: 0; bottom: 0; width: 100vw; height: 100vh; }
 .max-txt-trial text {font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; font-size: 8rem; letter-spacing: 0px; user-select: none; -webkit-user-select: none;/* Safari */ -moz-user-select: none;/* Firefox */ -ms-user-select: none;/* IE/Edge */}
-.min-txt-trial text {font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; font-size: 1rem; font-family: 'American', 'LEMONMILK-Regular', 'Roboto', sans-serif; letter-spacing: 20px; user-select: none; -webkit-user-select: none;/* Safari */ -moz-user-select: none;/* Firefox */ -ms-user-select: none;/* IE/Edge */}
+.min-txt-trial text {font-family: 'Heisenberg', 'LEMONMILK-Regular', 'Roboto', sans-serif; font-size: 8rem; letter-spacing: 0px; text-transform: initial; user-select: none; -webkit-user-select: none;/* Safari */ -moz-user-select: none;/* Firefox */ -ms-user-select: none;/* IE/Edge */}
 
 /* Trial */
 .trail-container {position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden;}
@@ -131,18 +130,8 @@ section{position:relative;width:100vw; min-height:100vh; overflow-x: hidden !imp
   .content__title{font-size: 2.5rem;}
   .content__text{font-size: 1rem; top: 33%;}
 
-  .inversion-lens{width:80vw; bottom:5%; right:10vw; transform:translate(0%,25%); transform-origin: center; }
-  .rss {font-size: .9rem;}
-
-  .rs{ flex-direction: row; justify-content: space-between; width: 100vw; height: fit-content; }
-  .rsI{font-size: 5rem; color: #fff; width: fit-content; position: absolute; left: 50%; transform-origin: center; transform: translateX(-50%);}
-  .rsIsub{font-size: 1rem; color: #fff;}
-  .rsII{font-size: 1.5rem; width: fit-content; visibility: hidden;}
-  .rsII-portrait{font-size: 1.5rem; width:max-content; visibility: visible; position: absolute; left: 50%; transform-origin: center; transform: translateX(-50%);}
-  .arrow-loop, .reverse {visibility: hidden;}
-
   .max-txt-trial text {font-size: 80vw; letter-spacing: -20px;}
-  .min-txt-trial text {font-size: 8vw; letter-spacing: 20px;}
+  .min-txt-trial text {font-size: 33vw; letter-spacing: 20px;}
   .trial-img { width: 100px; height: 100px; max-width: 100px; max-height: 100px; }
 
   .menu__item::before {visibility: hidden;}
@@ -154,9 +143,6 @@ section{position:relative;width:100vw; min-height:100vh; overflow-x: hidden !imp
     .menu__item { font-size: 1.5rem; }
     .menu__item:nth-child(even) { font-weight: 100; color: #eee;}
     .content__text { font-size: .75rem; }
-
-    .inversion-lens { height: 33vh;}
-    .rss{font-size: .7rem;}
 }
 
 /* Loader CSS */
@@ -168,8 +154,5 @@ section{position:relative;width:100vw; min-height:100vh; overflow-x: hidden !imp
 .load-skullcen {position: absolute; width: 100%; height: auto; z-index: 3;}
 .load-VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .load-VMcen {width: 140%; height: auto;}
-.load-flameI, .load-flameII {position: absolute; top: 64%; width: 60%; height: auto; transform: translateY(-50%); pointer-events: none; opacity: 1; transition: opacity 0.3s ease; z-index: 4;}
-.load-flameI {left: -48%; transform: translateY(-50%) rotate(-90deg);}
-.load-flameII {right: -48%; transform: translateY(-50%) rotate(90deg);}
 .load-VMwrap { animation: spin 5s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to   { transform: rotate(-360deg); } }

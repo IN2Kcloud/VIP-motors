@@ -45,7 +45,7 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
   }
 });
 
-  // SECTION 03
+  // ========== SECTION 03 ========== //
 
   document.addEventListener("DOMContentLoaded", () => {
   //const lenis = new Lenis({ autoRaf: true });
@@ -53,7 +53,7 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
   const container = document.querySelector(".trail-container");
 
   const config = {
-    imageCount: 35,
+    imageCount: 30,
     imageLifespan: 750,
     removalDelay: 50,
     mouseThreshold: 100,
@@ -67,7 +67,7 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
 
   const images = Array.from(
     { length: config.imageCount },
-    (_, i) => `assets/img${i + 1}.jpeg`
+    (_, i) => `assets/img${i + 1}.webp`
   );
   const trail = [];
 
@@ -257,35 +257,6 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
   };
   animate();
 });
-
-//REVEAL EFFECTS
-/*
-// MARQUE
-    gsap.from(".marquee-trial", 1, {
-      bottom: "-10em",
-      ease: "power4.out",
-      delay: 1,
-    });
-
-    gsap.from(".marquee-trial-II", 1, {
-      top: "-10em",
-      ease: "power4.out",
-      delay: 1,
-    });
-*/
-
-/* -- Glow effect -- */
-/*
-const blob = document.getElementById("blob");
-window.onpointermove = event => { 
-  const { clientX, clientY } = event;
- 
-  blob.animate({
-    left: `${clientX}px`,
-    top: `${clientY}px`
-  }, { duration: 3000, fill: "forwards" });
-}
-*/
 
 // BG points -----------------------------------------------------------------
 
