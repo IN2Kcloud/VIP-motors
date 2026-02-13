@@ -1,5 +1,3 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-
 window.addEventListener('load', () => {
   document.body.classList.remove('before-load');
 });
@@ -23,19 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
 // ========== SCREEN VIEW ========== //
 
 const screenElement = document.querySelector('.screen-view');
-const dtls = document.querySelector('.triangle-up'); 
+const dtls = document.querySelector('.triangle-up');
 
 function hyperMotion3D() {
-  const isSpinning = Math.random() > 0.8; // 20% chance for a 360 barrel roll
+  const isSpinning = Math.random() > 0.8; 
   
   const randomX = (Math.random() - 0.5) * 100;   
   const randomY = (Math.random() - 0.5) * 80;   
-  const randomZ = isSpinning ? 150 : (Math.random() * 50); // Lunges forward
+  const randomZ = isSpinning ? 120 : (Math.random() * 40); 
   
-  // 3D Rotations
-  const rotX = (Math.random() - 0.5) * 30; // Tilt up/down
-  const rotY = (Math.random() - 0.5) * 30; // Tilt left/right
-  const rotZ = isSpinning ? (Math.random() > 0.5 ? 360 : -360) : (Math.random() - 0.5) * 20;
+  const rotX = (Math.random() - 0.5) * 30; 
+  const rotY = (Math.random() - 0.5) * 30; 
+  
+  // FIX: Use relative rotation so it never "unwinds"
+  const rotZ = isSpinning ? (Math.random() > 0.5 ? "+=360" : "-=360") : (Math.random() - 0.5) * 20;
 
   gsap.to(screenElement, {
     duration: isSpinning ? 1.0 : 1.5,
@@ -43,31 +42,22 @@ function hyperMotion3D() {
     yPercent: -50,
     x: randomX,
     y: randomY,
-    z: randomZ, // Move toward camera
+    z: randomZ,
     rotationX: rotX,
     rotationY: rotY,
-    rotationZ: rotZ,
-    transformPerspective: 1200, // The "3D Depth" intensity
-    ease: isSpinning ? "expo.inOut" : "power2.inOut",
+    rotationZ: rotZ, // Moves from current position forward
+    transformPerspective: 1200,
+    ease: "expo.inOut",
     onComplete: () => {
-      if (isSpinning) {
-        // Reset Z and RotationZ smoothly after the "Impact"
-        gsap.to(screenElement, { z: 0, rotationZ: 0, duration: 0.5 });
-      }
-      hyperMotion3D();
+        // After a big spin, we normalize the value to keep numbers small 
+        // without the user seeing a jump.
+        if (isSpinning) {
+            const currentRot = gsap.getProperty(screenElement, "rotationZ");
+            gsap.set(screenElement, { rotationZ: currentRot % 360 });
+        }
+        hyperMotion3D();
     }
   });
-
-  // Triangle Reaction
-  if (dtls) {
-    gsap.to(dtls, {
-      duration: 0.8,
-      rotationY: rotY * 3,
-      rotationX: rotX * 3,
-      z: randomZ / 2,
-      ease: "power2.out"
-    });
-  }
 }
 
 hyperMotion3D();
