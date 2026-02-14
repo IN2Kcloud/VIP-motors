@@ -24,7 +24,7 @@
     .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
     .VMcen {width: 140%; height: auto;}
     .menu {background-color: #CE1F26; display: flex; justify-content: space-around; align-items: center; width: 100%; height: 100%; z-index: 5; overflow: hidden; opacity: 0; transition: transform .5s ease-in-out, opacity .5s ease;}
-    .menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
+    .menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
     @keyframes grain {0%,100% {transform: translate(0,0);} 10% {transform: translate(-5%,-10%);} 20% {transform: translate(-15%,5%);} 30% {transform: translate(7%,-25%);} 40% {transform: translate(-5%,25%);} 50% {transform: translate(-15%,10%);} 60% {transform: translate(15%,0%);} 70% {transform: translate(0%,15%);} 80% {transform: translate(3%,35%);} 90% {transform: translate(-10%,10%);}}
     .header.active .menu {opacity: 1;}
     .logo {position: relative; font-family: 'LEMONMILK-Regular', 'American', sans-serif; font-size: 2rem; font-weight: bolder; color: #fff; text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px  2px 0 black, 2px  2px 0 black; letter-spacing: 0px; text-decoration: none; transition: 0.3s; z-index: 1;}
@@ -45,7 +45,7 @@
     .mb span::after { content: ""; position: absolute; left: -10%; right: -10%; top: 50%; height: 2px; background: white; transform: scaleX(0); transform-origin: center; transition: transform 0.3s ease-in-out; } 
     .mb.open span::after { transform: scaleX(1); }
     .mob-menu {background-color: #CE1F26; display: flex; flex-direction: column; justify-content: center; align-items: center;  text-align: center; position: fixed; top: 50%; left: 100%; transform: translateY(-50%); width: 80%; height: 60%; z-index:102; overflow: hidden; border: 4px solid black; transition: transform .5s ease-in-out;}
-    .mob-menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
+    .mob-menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
     .mob-menu-inner { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
     .mob-logo {position: relative; font-family: 'LEMONMILK-Regular', 'American', sans-serif; font-size: 2rem; font-weight: bolder; color: #fff; text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px  2px 0 black, 2px  2px 0 black; letter-spacing: 2px; text-decoration: none; transition: 0.3s; z-index: 1;}
     .mob-logo:hover {color: #000; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px  1px 0 white, 1px  1px 0 white;}
@@ -61,7 +61,7 @@
     .marquee-trial-content { display: inline-block; white-space: nowrap; animation: marqueeAnim 200s linear infinite; }
     .marquee-trial-content span { font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; letter-spacing: 10px; font-weight: 300; color: #fff; text-shadow: -5px -5px 0 black, 5px -5px 0 black, -5px  5px 0 black, 5px  5px 0 black; font-size: 5em; display: inline-block; padding-right: 2rem; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;} 
     @keyframes marqueeAnim { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-    .marquee-trial::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
+    .marquee-trial::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
     .ab{ position:relative; background-color:#fff; padding:1rem; border:2px solid transparent; transition:transform 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease; overflow:hidden!important; }
     .ab img{ width:100%; height:500px; object-fit:cover; margin-bottom:1rem; filter: grayscale(100%); transition:transform 0.4s ease, filter 0.5s ease; }
     .ab:hover img{transform:scale(1.03); filter: grayscale(0%);}
