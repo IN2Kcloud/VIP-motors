@@ -7,14 +7,18 @@ document.querySelector('.loading').addEventListener('transitionend', (e) => {
 });
 
 // ========== VIDEO FORCE PLAY ========== //
+
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll("video");
 
   videos.forEach(vid => {
-    vid.play().catch(() => {
-      vid.muted = true; // force mute if needed
-      vid.play().catch(() => {});
-    });
+    vid.muted = true; // Desktop browsers almost require this for autoplay
+    vid.setAttribute('preload', 'metadata'); // Don't choke the network immediately
+    
+    // Delay play by 500ms to let the Canvas/GSAP settle
+    setTimeout(() => {
+      vid.play().catch(err => console.log("Autoplay blocked", err));
+    }, 500);
   });
 });
 
@@ -47,6 +51,7 @@ function hyperMotion3D() {
     rotationY: rotY,
     rotationZ: rotZ, // Moves from current position forward
     transformPerspective: 1200,
+    // force3D: true, Forces hardware acceleration
     ease: "expo.inOut",
     onComplete: () => {
         // After a big spin, we normalize the value to keep numbers small 
@@ -94,6 +99,7 @@ window.addEventListener('load', () => {
 });
 
 // ========== MENU animation ========== //
+
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(CustomEase);
   CustomEase.create("hop", "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1");
@@ -164,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // BG points -----------------------------------------------------------------
-
+/*
 const gridCanvas = document.getElementById("grid-bg");
 const ctx = gridCanvas.getContext("2d");
 
@@ -182,42 +188,45 @@ window.addEventListener("mousemove", (e) => {
   mouse.x = e.clientX / window.innerWidth;
   mouse.y = e.clientY / window.innerHeight;
 });
+let frameCount = 0;
 
 function draw() {
-  time += 0.01;
+  // Optimization: Only run math/draw every 2nd frame to free up CPU for the video
+  frameCount++;
+  if (frameCount % 2 !== 0) {
+    requestAnimationFrame(draw);
+    return;
+  }
 
+  time += 0.01;
   ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+  
+  // Optimization: Fill background once, don't use high-perf killing transparency
   ctx.fillStyle = "#CB2027";
   ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
 
-  const spacing = 32;
+  const spacing = 40; // Increase spacing (less dots = more speed)
   const rows = Math.ceil(gridCanvas.height / spacing);
   const cols = Math.ceil(gridCanvas.width / spacing);
 
+  ctx.fillStyle = "#000"; // Set once outside the loop
+
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-
       const px = x * spacing;
       const py = y * spacing;
 
-      // wave motion
-      const wave =
-        Math.sin(x * 0.3 + time) +
-        Math.cos(y * 0.3 + time);
-
-      // mouse pull
+      const wave = Math.sin(x * 0.3 + time) + Math.cos(y * 0.3 + time);
       const mx = (mouse.x - 0.5) * 40;
       const my = (mouse.y - 0.5) * 40;
 
       const dx = px + wave * 3 + mx * (y / rows);
       const dy = py + wave * 3 + my * (x / cols);
-
       const size = 1.2 + wave * 0.3;
 
-      ctx.beginPath();
-      ctx.arc(dx, dy, size, 0, Math.PI * 2);
-      ctx.fillStyle = "#000";
-      ctx.fill();
+      // Optimization: Use rect instead of arc for simple dots. 
+      // drawing 'arc' (circles) is 10x heavier for the GPU than 'rect'.
+      ctx.fillRect(dx, dy, size * 2, size * 2); 
     }
   }
 
@@ -225,6 +234,7 @@ function draw() {
 }
 
 draw();
+*/
 
 // ========== SQUARED MARQUEE ========== //
 
