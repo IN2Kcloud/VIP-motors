@@ -46,7 +46,7 @@ body {
 .header.active {height: 150px; border-bottom: 2px solid #000;}
 
 .skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer;}
-.skullcen {position: absolute; top: 57%; left: 50%; transform: translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
+.skullcen {position: absolute;top:50%;left:50%;transform:translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
 .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .VMcen {width: 140%; height: auto;}
 .skullcen:hover ~ .flameI, .skullcen:hover ~ .flameII {opacity: 1;}
