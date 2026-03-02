@@ -11,7 +11,7 @@ body{ font-family:'LEMONMILK-Regular',sans-serif; background:var(--bg); color:va
 .header {background-color: transparent; position: fixed; top: 0; left: 0; display: flex; align-items: center; justify-content: center; width: 100vw; height: 300px; border-bottom: 2px solid transparent; transition: height 0.3s ease; overflow: hidden; position: sticky; top: 0; z-index: 100;}
 .header.active {height: 150px; border-bottom: 2px solid #000;}
 .skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer;}
-.skullcen {position: absolute;top:55%;left:50%;transform:translate(-50%, -50%); width: 80%; height: auto; z-index: 3;}
+.skullcen {position: absolute;top:50%;left:50%;transform:translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
 .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .VMcen {width: 140%; height: auto;}
 .flame {display: none; position: absolute;top:0%;left:50%;transform:translate(-50%, -50%); width: 200%;height: auto; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; z-index: 2;}
