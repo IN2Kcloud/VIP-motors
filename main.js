@@ -170,71 +170,75 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // BG points -----------------------------------------------------------------
-/*
 const gridCanvas = document.getElementById("grid-bg");
 const ctx = gridCanvas.getContext("2d");
 
-let mouse = { x: 0.5, y: 0.5 };
+// --- 1. Create a hidden noise buffer ---
+const noiseCanvas = document.createElement('canvas');
+const noiseCtx = noiseCanvas.getContext('2d');
+noiseCanvas.width = 100;
+noiseCanvas.height = 100;
+
+function createNoise() {
+    const imageData = noiseCtx.createImageData(100, 100);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+        const val = Math.random() * 255;
+        data[i] = data[i+1] = data[i+2] = val; // RGB
+        data[i+3] = 25; // Opacity of the grain (keep it low!)
+    }
+    noiseCtx.putImageData(imageData, 0, 0);
+}
+createNoise();
+
 let time = 0;
 
 function resize() {
-  gridCanvas.width = window.innerWidth;
-  gridCanvas.height = window.innerHeight;
+    gridCanvas.width = window.innerWidth;
+    gridCanvas.height = window.innerHeight;
 }
 window.addEventListener("resize", resize);
 resize();
 
-window.addEventListener("mousemove", (e) => {
-  mouse.x = e.clientX / window.innerWidth;
-  mouse.y = e.clientY / window.innerHeight;
-});
-let frameCount = 0;
-
 function draw() {
-  // Optimization: Only run math/draw every 2nd frame to free up CPU for the video
-  frameCount++;
-  if (frameCount % 2 !== 0) {
+    time += 0.005;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+
+    // 2. Draw the Gradient
+    const centerX = gridCanvas.width / 2 + Math.cos(time) * (gridCanvas.width * 0.3);
+    const centerY = gridCanvas.height / 2 + Math.sin(time * 0.8) * (gridCanvas.height * 0.2);
+    const baseRadius = Math.max(gridCanvas.width, gridCanvas.height) * 0.7;
+    const pulseRadius = baseRadius + Math.sin(time * 0.5) * 100;
+
+    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, pulseRadius);
+    gradient.addColorStop(0, "#CB2027"); 
+    gradient.addColorStop(1, "#000");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
+
+    // 3. Layer the Noise on top
+    // We use 'source-over' or 'overlay' to blend the grain
+    ctx.globalCompositeOperation = "source-over"; 
+    
+    // To animate the noise, we draw the small noise tile at random offsets
+    const noiseOffsetX = Math.random() * noiseCanvas.width;
+    const noiseOffsetY = Math.random() * noiseCanvas.height;
+
+    // Create a pattern from the noise tile
+    const pattern = ctx.createPattern(noiseCanvas, 'repeat');
+    ctx.save();
+    ctx.translate(noiseOffsetX, noiseOffsetY); // Shifts noise every frame
+    ctx.fillStyle = pattern;
+    ctx.fillRect(-noiseOffsetX, -noiseOffsetY, gridCanvas.width, gridCanvas.height);
+    ctx.restore();
+
     requestAnimationFrame(draw);
-    return;
-  }
-
-  time += 0.01;
-  ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
-  
-  // Optimization: Fill background once, don't use high-perf killing transparency
-  ctx.fillStyle = "#CB2027";
-  ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
-
-  const spacing = 40; // Increase spacing (less dots = more speed)
-  const rows = Math.ceil(gridCanvas.height / spacing);
-  const cols = Math.ceil(gridCanvas.width / spacing);
-
-  ctx.fillStyle = "#000"; // Set once outside the loop
-
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const px = x * spacing;
-      const py = y * spacing;
-
-      const wave = Math.sin(x * 0.3 + time) + Math.cos(y * 0.3 + time);
-      const mx = (mouse.x - 0.5) * 40;
-      const my = (mouse.y - 0.5) * 40;
-
-      const dx = px + wave * 3 + mx * (y / rows);
-      const dy = py + wave * 3 + my * (x / cols);
-      const size = 1.2 + wave * 0.3;
-
-      // Optimization: Use rect instead of arc for simple dots. 
-      // drawing 'arc' (circles) is 10x heavier for the GPU than 'rect'.
-      ctx.fillRect(dx, dy, size * 2, size * 2); 
-    }
-  }
-
-  requestAnimationFrame(draw);
 }
 
 draw();
-*/
 
 // ========== SQUARED MARQUEE ========== //
 
