@@ -25,48 +25,50 @@ document.addEventListener("DOMContentLoaded", () => {
 // ========== SCREEN VIEW ========== //
 
 const screenElement = document.querySelector('.screen-view');
-const dtls = document.querySelector('.triangle-up');
+const dtls = document.querySelector('.triangle-up'); // Your saved triangle element
 
-function hyperMotion3D() {
-  const isSpinning = Math.random() > 0.8; 
+function glitchStepMotion() {
+  const isMajorShift = Math.random() > 0.8;
   
-  const randomX = (Math.random() - 0.5) * 100;   
-  const randomY = (Math.random() - 0.5) * 80;   
-  const randomZ = isSpinning ? 120 : (Math.random() * 40); 
+  // Subtle "idling" values vs aggressive "glitch" values
+  const moveX = isMajorShift ? (Math.random() - 0.5) * 120 : (Math.random() - 0.5) * 40;
+  const moveY = isMajorShift ? (Math.random() - 0.5) * 100 : (Math.random() - 0.5) * 30;
+  const moveZ = isMajorShift ? Math.random() * 150 : Math.random() * 50;
   
-  const rotX = (Math.random() - 0.5) * 30; 
-  const rotY = (Math.random() - 0.5) * 30; 
-  
-  // FIX: Use relative rotation so it never "unwinds"
-  const rotZ = isSpinning ? (Math.random() > 0.5 ? "+=360" : "-=360") : (Math.random() - 0.5) * 20;
+  // Sharp rotations to catch the light on the 2px white border
+  const rotX = (Math.random() - 0.5) * 45; 
+  const rotY = (Math.random() - 0.5) * 45;
+  const rotZ = isMajorShift ? (Math.random() > 0.5 ? 10 : -10) : (Math.random() - 0.5) * 4;
 
   gsap.to(screenElement, {
-    duration: isSpinning ? 1.0 : 1.5,
+    duration: isMajorShift ? 0.2 : 1.2, // Snap quickly on major shifts, drift on minor
     xPercent: -50,
     yPercent: -50,
-    x: randomX,
-    y: randomY,
-    z: randomZ,
+    x: moveX,
+    y: moveY,
+    z: moveZ,
     rotationX: rotX,
     rotationY: rotY,
-    rotationZ: rotZ, // Moves from current position forward
-    transformPerspective: 1200,
-    // force3D: true, Forces hardware acceleration
-    ease: "expo.inOut",
+    rotationZ: rotZ,
+    transformPerspective: 1000,
+    ease: isMajorShift ? "rough({ template: none, strength: 2, points: 20, taper: 'none', randomize: true, clamp:  false})" : "expo.out",
     onComplete: () => {
-        // After a big spin, we normalize the value to keep numbers small 
-        // without the user seeing a jump.
-        if (isSpinning) {
-            const currentRot = gsap.getProperty(screenElement, "rotationZ");
-            gsap.set(screenElement, { rotationZ: currentRot % 360 });
-        }
-        hyperMotion3D();
+      // Small "micro-jitter" after every move to keep it feeling "alive"
+      gsap.to(dtls, {
+        duration: 0.1,
+        x: (Math.random() - 0.5) * 10,
+        y: (Math.random() - 0.5) * 10,
+        repeat: 1,
+        yoyo: true
+      });
+      
+      glitchStepMotion();
     }
   });
 }
 
-hyperMotion3D();
-
+glitchStepMotion();
+/*
 window.addEventListener('load', () => {
   // 1. Existing Loading Logic
   document.body.classList.remove('before-load');
@@ -97,7 +99,7 @@ window.addEventListener('load', () => {
   // Initialize both marquees
   initMarquee(".marqueecontent");
 });
-
+*/
 // ========== MENU animation ========== //
 
 document.addEventListener("DOMContentLoaded", () => {
