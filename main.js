@@ -68,7 +68,7 @@ function glitchStepMotion() {
 }
 
 glitchStepMotion();
-/*
+
 window.addEventListener('load', () => {
   // 1. Existing Loading Logic
   document.body.classList.remove('before-load');
@@ -99,7 +99,32 @@ window.addEventListener('load', () => {
   // Initialize both marquees
   initMarquee(".marqueecontent");
 });
-*/
+
+// ========== VIDEOS TIMING ========== //
+const leader = document.getElementById('screen-video-wrapper');
+const follower = document.getElementById('bg-video-wrapper');
+
+// 1. Ensure they start together
+leader.onplay = () => follower.play();
+leader.onpause = () => follower.pause();
+
+// 2. The Sync Logic
+// This checks every few milliseconds if they are out of alignment
+leader.addEventListener('timeupdate', () => {
+  const diff = Math.abs(leader.currentTime - follower.currentTime);
+  
+  // If they drift by more than 0.1 seconds, force a snap-sync
+  if (diff > 0.1) {
+    follower.currentTime = leader.currentTime;
+  }
+});
+
+// 3. Speed Match
+// In case one video has a slightly different encoded framerate
+leader.addEventListener('ratechange', () => {
+  follower.playbackRate = leader.playbackRate;
+});
+
 // ========== MENU animation ========== //
 
 document.addEventListener("DOMContentLoaded", () => {

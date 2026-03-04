@@ -26,9 +26,9 @@
     </div>
   </div>
   
-  <canvas id="grid-bg"></canvas>
+  <!--<canvas id="grid-bg"></canvas>-->
 
-  <div class="body-video">
+  <div class="body-video" aria-hidden="true">
     <video id="screen-video-wrapper" autoplay muted playsinline loop preload="auto" webkit-playsinline>
       <source src="./assets/vmain-b&r.mp4" type="video/mp4" />
     </video>
@@ -80,12 +80,11 @@
   </div>
   -->
   <div class="screen-view">
-    <div class="screen-video">
+    <div class="screen-video" aria-hidden="true">
       <video id="screen-video-wrapper" autoplay muted playsinline loop preload="auto" webkit-playsinline>
         <source src="./assets/vmain.mp4" type="video/mp4" />
       </video>
     </div>
-    <!--
     <div class="marqueecontainer fade-sides">
       <div class="marqueecontent">
         <span>•</span>
@@ -106,7 +105,6 @@
         <span>supercars, classic legends & luxury automotive brands</span>
       </div>
     </div>
-    -->
   </div>
   
   <div class="marquee-trial-II">
@@ -130,10 +128,6 @@
     </div>
   </div>
   
-  <div class="circular-text">
-    <div class="morph-text" id="morph-text">VIP</div>
-  </div>
-
   <!--MENU-->
   <!--
   <div class="logo">
@@ -369,49 +363,6 @@
     // Apply separately
     magneticEffect(document.querySelector(".logo img"), 35, 0.15);       // img with base centering + rotation
     magneticEffect(document.querySelector(".logo a"), 20, 0.12, true);   // text opposite movement
-  </script>
-
-  <script type="module">
-    import gsap from "https://cdn.skypack.dev/gsap";
-    
-    // Select the morphing text element
-    const morphText = document.getElementById("morph-text");
-    
-    // Words to cycle through
-    const words = ["V I P", "Motors", "Turbos", "Drifts"];
-    let wordIndex = 0;
-    
-    // Morphing function
-    function morphWords() {
-      gsap.to(morphText, {
-        duration: 0.5,
-        opacity: 0,
-        scale: 0.9,
-        ease: "power2.inOut",
-        onComplete: () => {
-          wordIndex = (wordIndex + 1) % words.length;
-          morphText.textContent = words[wordIndex];
-          gsap.to(morphText, {
-            duration: 0.5,
-            opacity: 1,
-            scale: 1,
-            ease: "power2.inOut",
-          });
-        },
-      });
-    }
-    
-    // Loop the morph every 2.5 seconds
-    setInterval(morphWords, 2500);
-    
-    // Optional subtle idle animation
-    gsap.to(morphText, {
-      duration: 2,
-      scale: 1.05,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut",
-    });
   </script>
 
   <script>
