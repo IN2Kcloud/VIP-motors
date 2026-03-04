@@ -314,3 +314,4 @@ a.content__text-link[data-fx="6"]:hover::after {
 .load-VMcen {width: 140%; height: auto;}
 .load-VMwrap { animation: spin 5s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to   { transform: rotate(-360deg); } }
+@media(max-width: 1300px) { .load-skullcen {width: 90%;} }
