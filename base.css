@@ -38,11 +38,11 @@ body::before { content: ''; position: fixed; top: -100%; left: -50%; width: 300%
 .screen-view { transform-style: preserve-3d; backface-visibility: hidden; filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0px 0px 10px #fff); will-change: transform; }
 .screen-video/*, .marqueecontainer*/ { transform: translateZ(20px); transform-style: preserve-3d; }
 .screen-video { pointer-events: none; }
-@media (max-width: 1000px) { .screen-view{aspect-ratio: 3/4; width: 66%;} .screen-video {height: 100%;width: auto;} #screen-video-wrapper {height: 98%; object-fit: cover;}}
 .screen-view:hover ~ .marquee-trial {transform: translateY(0em) rotate(-20deg);}
 .screen-view:hover ~ .marquee-trial-II {transform: translateY(0em) rotate(-20deg);}
 .screen-video {width: 100%;}
-#screen-video-wrapper {width: 100%; object-fit: cover;}
+#screen-video-wrapper {width: 100%; height: 100%; object-fit: cover;}
+@media (max-width: 1000px) { .screen-view{aspect-ratio: 3/4; width: 66%;} .screen-video {height: 100%;width: auto;} #screen-video-wrapper {height: 100%; object-fit: cover;}}
 /* marquee */
 .marqueecontainer { position: relative; width: 100%; overflow: hidden; background: transparent; border-top: 2px solid white; border-bottom: 2px solid white; filter: drop-shadow(0px 0px 5px #fff);}
 .marqueecontent { font-family: 'LEMONMILK-regular', 'Roboto', sans-serif; font-weight: bold; display: flex; flex-direction: row; flex-wrap: nowrap; white-space: nowrap; will-change: transform; }
