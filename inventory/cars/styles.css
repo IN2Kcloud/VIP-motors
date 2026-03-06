@@ -13,7 +13,7 @@ p { font-size: 14px; font-weight: 600; -webkit-font-smoothing: antialiased; -moz
 .header {position: absolute; top: 0; z-index: 10;}
 /*.header.active {height: 150px; border-bottom: 2px solid #000;}*/
 .skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 125px; height: 125px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer;}
-.skullcen {position: absolute;top:55%;left:50%;transform: translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
+.skullcen {position: absolute;top:50%;left:50%;transform: translate(-50%, -50%); width: 90%; height: auto; z-index: 3;}
 .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .VMcen {width: 140%; height: auto;}
 /* ------------------ MOBILE HEADER ------------------ */
