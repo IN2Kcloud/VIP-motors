@@ -183,7 +183,7 @@
       
             // Determine the move distance based on screen width
             // If the screen is 1000px or less, use -120, otherwise -102
-            let moveAmount = window.innerWidth <= 1000 ? -120 : -102;
+            let moveAmount = window.innerWidth <= 1000 ? -130 : -105;
       
             gsap.to(car, { yPercent: moveAmount, duration: 1, ease: 'power4.out' });
             gsap.to(dtls, { rotation: 180, duration: 1, ease: 'power4.out' });
