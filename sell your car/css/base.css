@@ -2,7 +2,7 @@
 @font-face { font-family: 'LEMONMILK-Regular'; src: url('../../assets/LEMONMILK-Regular.otf') format('opentype'); }
 @font-face { font-family: 'American'; src: url('../../assets/American Captain.otf') format('opentype'); }
 :root{ --bg:#eee; --text:#000; --accent:#CB2027; --card:#fff; }
-*{box-sizing:border-box;margin:0;padding:0}
+* {box-sizing: border-box; padding: 0; margin: 0; -webkit-tap-highlight-color: transparent;}
 body{ font-family:'LEMONMILK-Regular',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 #grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 .cursor{ position:fixed; width:12px; height:12px; border-radius:50%; background:#fff; pointer-events:none; mix-blend-mode:difference; transition:transform .05s linear; z-index:9999; }
