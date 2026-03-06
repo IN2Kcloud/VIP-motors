@@ -1,4 +1,4 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {box-sizing: border-box; padding: 0; margin: 0; -webkit-tap-highlight-color: transparent;}
 body { font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; overflow: hidden; background-color: #eee;}
 @font-face{font-family:'LEMONMILK-Regular';src:url('../../assets/LEMONMILK-Regular.otf') format('opentype');font-display:swap;}
 @font-face { font-family: 'LEMONMILK-Regular'; src: url('../../assets/LEMONMILK-Regular.otf') format('opentype'); }
