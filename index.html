@@ -17,14 +17,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 </head>
 <body class="before-load">
-  <div class="loading">
-    <div class="load-skull">
-      <img class="load-skullcen" src="./assets/VIP.webp"></img>
-      <div class="load-VMwrap">
-        <img class="load-VMcen" src="./assets/VIPmarquee.webp" alt="">
+    <div class="loading">
+      <div class="shutter-top"></div>
+      <div class="shutter-bottom"></div>
+      <div class="loading-content">
+        <div class="load-counter">00</div>
+        <div class="load-bar-container">
+            <div class="load-bar"></div>
+        </div>
+        <div class="load-status">VIP CHECK: ENGINE START</div>
       </div>
     </div>
-  </div>
   
   <!--<canvas id="grid-bg"></canvas>-->
 
@@ -79,6 +82,7 @@
       </svg>
   </div>
   -->
+  <div class="screen-bg"></div>
   <div class="screen-view">
     <div class="screen-video" aria-hidden="true">
       <video id="screen-video-wrapper" autoplay muted playsinline loop preload="auto" webkit-playsinline>

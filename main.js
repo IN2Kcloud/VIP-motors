@@ -1,9 +1,77 @@
+// LOADER ==============================
 window.addEventListener('load', () => {
-  document.body.classList.remove('before-load');
-});
+    const tl = gsap.timeline();
+    const counterDisplay = document.querySelector('.load-counter');
+    let loadProgress = { value: 0 };
 
-document.querySelector('.loading').addEventListener('transitionend', (e) => {
-  document.body.removeChild(e.currentTarget);
+    // 1. Forced 5-Second "Heavy System Check" Sequence
+    tl.to(loadProgress, {
+        value: 100,
+        duration: 5,
+        // Using a "SlowMo" ease combined with steps makes it look like it's 
+        // struggling at 20% and 80% (classic loading behavior)
+        ease: "slow(0.1, 0.8, false)", 
+        onUpdate: () => {
+            // Randomly flicker the opacity slightly during update for realism
+            if (Math.random() > 0.85) {
+                counterDisplay.style.opacity = "0.5";
+            } else {
+                counterDisplay.style.opacity = "1";
+            }
+            
+            const displayVal = Math.round(loadProgress.value).toString().padStart(2, '0');
+            if(counterDisplay) counterDisplay.innerText = displayVal;
+        }
+    });
+
+    // The bar mirrors the "struggle" of the counter
+    tl.to(".load-bar", {
+        width: "100%",
+        duration: 5,
+        ease: "slow(0.1, 0.8, false)"
+    }, 0); 
+
+    // 2. Flicker the status text near the end for a "glitch" effect
+    tl.to(".load-status", {
+        opacity: 0,
+        repeat: 3,
+        yoyo: true,
+        duration: 0.1
+    }, 4.5);
+
+    // 3. Fade out the loader content
+    tl.to(".loading-content", {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power4.inOut"
+    });
+
+    // 3. THE REVEAL: Snap open the shutters
+    // Note: yPercent: -102/102 ensures no tiny slivers of black remain
+    tl.to(".shutter-top", { yPercent: -102, duration: 1.5, ease: "expo.inOut" }, "+=0.2");
+    tl.to(".shutter-bottom", { yPercent: 102, duration: 1.5, ease: "expo.inOut" }, "<");
+
+    // 4. The "Ignition" Reveal (Page Elements)
+    tl.set(".marquee-trial, .marquee-trial-II", { 
+        visibility: "visible" 
+    });
+
+    tl.fromTo(".menu-toggle", 
+        { scale: 2, opacity: 0, filter: "blur(20px)" }, 
+        { scale: 1, opacity: 1, filter: "blur(0px)", duration: 2.5, ease: "power4.out" }, "-=0.8");
+
+    tl.fromTo(".screen-view", 
+        { y: 80, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=1.8");
+
+    tl.fromTo(".screen-bg", 
+        { y: 80, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out" }, "-=1.5");
+
+    tl.to(".we", { opacity: 1, duration: 1.5 }, "-=1");
+
+    // Clean up
+    tl.set(".loading", { display: "none" });
 });
 
 // ========== VIDEO FORCE PLAY ========== //
@@ -25,49 +93,62 @@ document.addEventListener("DOMContentLoaded", () => {
 // ========== SCREEN VIEW ========== //
 
 const screenElement = document.querySelector('.screen-view');
-const dtls = document.querySelector('.triangle-up'); // Your saved triangle element
+const screenBg = document.querySelector('.screen-bg');
 
-function glitchStepMotion() {
-  const isMajorShift = Math.random() > 0.8;
+function hyperMotion3D() {
+  const isSpinning = Math.random() > 0.8; 
   
-  // Subtle "idling" values vs aggressive "glitch" values
-  const moveX = isMajorShift ? (Math.random() - 0.5) * 120 : (Math.random() - 0.5) * 40;
-  const moveY = isMajorShift ? (Math.random() - 0.5) * 100 : (Math.random() - 0.5) * 30;
-  const moveZ = isMajorShift ? Math.random() * 150 : Math.random() * 50;
+  const randomX = (Math.random() - 0.5) * 100;   
+  const randomY = (Math.random() - 0.5) * 80;   
+  const randomZ = isSpinning ? 120 : (Math.random() * 40); 
   
-  // Sharp rotations to catch the light on the 2px white border
-  const rotX = (Math.random() - 0.5) * 45; 
-  const rotY = (Math.random() - 0.5) * 45;
-  const rotZ = isMajorShift ? (Math.random() > 0.5 ? 10 : -10) : (Math.random() - 0.5) * 4;
-
-  gsap.to(screenElement, {
-    duration: isMajorShift ? 0.2 : 1.2, // Snap quickly on major shifts, drift on minor
+  const rotX = (Math.random() - 0.5) * 30; 
+  const rotY = (Math.random() - 0.5) * 30; 
+  
+  // FIX: Use relative rotation so it never "unwinds"
+  const rotZ = isSpinning ? (Math.random() > 0.5 ? "+=360" : "-=360") : (Math.random() - 0.5) * 20;
+  
+  // 2. Move the background with a slight delay
+  gsap.to(screenBg, {
+    delay: 0.15, // The "lag" that creates the trailing effect
+    duration: isSpinning ? 1.0 : 1.5,
     xPercent: -50,
     yPercent: -50,
-    x: moveX,
-    y: moveY,
-    z: moveZ,
+    x: randomX * 0.9,
+    y: randomY * 0.9,
+    z: (randomZ > 0) ? randomZ - 20 : -10, // Ensure it stays behind
+    rotationX: rotX * 0.9,
+    rotationY: rotY * 0.9,
+    rotationZ: rotZ,
+    ease: "power2.out" // Slightly less aggressive ease for the lag
+  });
+  
+  gsap.to(screenElement, {
+    duration: isSpinning ? 1.0 : 1.5,
+    xPercent: -50,
+    yPercent: -50,
+    x: randomX,
+    y: randomY,
+    z: randomZ,
     rotationX: rotX,
     rotationY: rotY,
-    rotationZ: rotZ,
-    transformPerspective: 1000,
-    ease: isMajorShift ? "rough({ template: none, strength: 2, points: 20, taper: 'none', randomize: true, clamp:  false})" : "expo.out",
+    rotationZ: rotZ, // Moves from current position forward
+    transformPerspective: 1200,
+    // force3D: true, Forces hardware acceleration
+    ease: "expo.inOut",
     onComplete: () => {
-      // Small "micro-jitter" after every move to keep it feeling "alive"
-      gsap.to(dtls, {
-        duration: 0.1,
-        x: (Math.random() - 0.5) * 10,
-        y: (Math.random() - 0.5) * 10,
-        repeat: 1,
-        yoyo: true
-      });
-      
-      glitchStepMotion();
+        // After a big spin, we normalize the value to keep numbers small 
+        // without the user seeing a jump.
+        if (isSpinning) {
+            const currentRot = gsap.getProperty(screenElement, "rotationZ");
+            gsap.set(screenElement, { rotationZ: currentRot % 360 });
+        }
+        hyperMotion3D();
     }
   });
 }
 
-glitchStepMotion();
+hyperMotion3D();
 
 window.addEventListener('load', () => {
   // 1. Existing Loading Logic
