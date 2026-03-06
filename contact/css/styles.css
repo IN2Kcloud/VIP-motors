@@ -1,3 +1,5 @@
+* {box-sizing: border-box; padding: 0; margin: 0; -webkit-tap-highlight-color: transparent;}
+
 @font-face {
   font-family: 'LEMONMILK-Regular';
   src: url('../../assets/LEMONMILK-Regular.otf') format('opentype');
