@@ -171,20 +171,24 @@
         ease: "power1.out"
       });
       
+      // Create the MatchMedia observer
+      let mm = gsap.matchMedia();
+      
       // 2. Click Logic
       dtls.forEach(triangle => {
         triangle.addEventListener('click', () => {
           if (!menuOpen) {
             hoverTween.pause();
-            
-            // Reset triangle state and slide car up
             gsap.set(dtls, { y: 0, opacity: 1 });
-            
-            gsap.to(car, { yPercent: -102, duration: 1, ease: 'power4.out' });
+      
+            // Determine the move distance based on screen width
+            // If the screen is 1000px or less, use -120, otherwise -102
+            let moveAmount = window.innerWidth <= 1000 ? -120 : -102;
+      
+            gsap.to(car, { yPercent: moveAmount, duration: 1, ease: 'power4.out' });
             gsap.to(dtls, { rotation: 180, duration: 1, ease: 'power4.out' });
             gsap.to(xbg, { opacity: 1, duration: 1, ease: 'power4.out' });
           } else {
-            // Return car to baseline and resume hover
             gsap.to(car, { yPercent: 0, duration: 1, ease: 'power4.out' });
             gsap.to(dtls, { 
               rotation: 0, 
