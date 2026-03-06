@@ -161,51 +161,42 @@
       const car = document.querySelector('.car');
       let menuOpen = false;
       
-      // 1. Assign the floating animation to a variable so we can control it
+      // 1. Floating Animation
       const hoverTween = gsap.to(dtls, {
         y: -15,
         opacity: 0,
-        duration: .5, // .5 was likely too fast to see clearly
+        duration: 0.5,
         repeat: -1,
-        stagger: 0.2,  // Reduced stagger for better flow
+        stagger: 0.2,
         ease: "power1.out"
       });
       
       // 2. Click Logic
-      let mm = gsap.matchMedia();
-      mm.add({
-        // Define your breakpoints
-        isDesktop: "(min-width: 1300px)",
-        isMobile: "(max-width: 1000px)",
-        isShort: "(max-height: 800px)" 
-      }, (context) => {
-        let { isDesktop, isMobile, isShort } = context.conditions;
-      
-        dtls.forEach(triangle => {
-          triangle.addEventListener('click', () => {
-            if (!menuOpen) {
-              hoverTween.pause();
-              gsap.set(dtls, { y: 0, opacity: 1 });
-      
-              // RESPONSIVE LOGIC:
-              let topValue = isDesktop ? '48%' : '20%'; 
-              if (isMobile) topValue = '40%'; // Adjust for landscape phones
-              if (isShort) topValue = '25%'; // Adjust for landscape phones
-      
-              gsap.to(car, { top: topValue, duration: 1, ease: 'power4.out' });
-              gsap.to(dtls, { rotation: 180, duration: 1, ease: 'power4.out' });
-              gsap.to(xbg, { opacity: 1, duration: 1, ease: 'power4.out' });
-            } else {
-              // Close logic...
-              gsap.to(car, { top: '100%', duration: 1, ease: 'power4.out' });
-              gsap.to(dtls, { rotation: 0, duration: 1, ease: 'power4.out', onComplete: () => hoverTween.play() });
-              gsap.to(xbg, { opacity: 0, duration: 1, ease: 'power4.out' });
-            }
-            menuOpen = !menuOpen;
-          });
+      dtls.forEach(triangle => {
+        triangle.addEventListener('click', () => {
+          if (!menuOpen) {
+            hoverTween.pause();
+            
+            // Reset triangle state and slide car up
+            gsap.set(dtls, { y: 0, opacity: 1 });
+            
+            gsap.to(car, { yPercent: -102, duration: 1, ease: 'power4.out' });
+            gsap.to(dtls, { rotation: 180, duration: 1, ease: 'power4.out' });
+            gsap.to(xbg, { opacity: 1, duration: 1, ease: 'power4.out' });
+          } else {
+            // Return car to baseline and resume hover
+            gsap.to(car, { yPercent: 0, duration: 1, ease: 'power4.out' });
+            gsap.to(dtls, { 
+              rotation: 0, 
+              duration: 1, 
+              ease: 'power4.out', 
+              onComplete: () => hoverTween.play() 
+            });
+            gsap.to(xbg, { opacity: 0, duration: 1, ease: 'power4.out' });
+          }
+          menuOpen = !menuOpen;
         });
       });
-
     </script>
 
     <script src="../script.js"></script>
