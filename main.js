@@ -90,6 +90,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ========== SQUARED MARQUEE ========== //
+
+// Target all text paths
+const allMarquees = document.querySelectorAll(".marquee-path");
+
+allMarquees.forEach(path => {
+    // Repeat text to fill the square
+    const text = path.textContent;
+    path.textContent = (text + " ").repeat(4);
+
+    gsap.to(path, {
+        attr: { startOffset: "-100%" },
+        duration: 30, // Slowed down for luxury feel
+        repeat: -1,
+        ease: "none"
+    });
+});
+
 // ========== SCREEN VIEW ========== //
 
 const screenElement = document.querySelector('.screen-view');
@@ -149,6 +167,8 @@ function hyperMotion3D() {
 }
 
 hyperMotion3D();
+/*
+// MARQUEE
 
 window.addEventListener('load', () => {
   // 1. Existing Loading Logic
@@ -180,7 +200,7 @@ window.addEventListener('load', () => {
   // Initialize both marquees
   initMarquee(".marqueecontent");
 });
-
+*/
 // ========== VIDEOS TIMING ========== //
 const leader = document.getElementById('screen-video-wrapper');
 const follower = document.getElementById('bg-video-wrapper');
@@ -276,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
+/*
 // BG points -----------------------------------------------------------------
 const gridCanvas = document.getElementById("grid-bg");
 const ctx = gridCanvas.getContext("2d");
@@ -347,21 +367,4 @@ function draw() {
 }
 
 draw();
-
-// ========== SQUARED MARQUEE ========== //
-
-// Target all text paths
-const allMarquees = document.querySelectorAll(".marquee-path");
-
-allMarquees.forEach(path => {
-    // Repeat text to fill the square
-    const text = path.textContent;
-    path.textContent = (text + " ").repeat(4);
-
-    gsap.to(path, {
-        attr: { startOffset: "-100%" },
-        duration: 30, // Slowed down for luxury feel
-        repeat: -1,
-        ease: "none"
-    });
-});
+*/
