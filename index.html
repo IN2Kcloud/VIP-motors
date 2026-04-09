@@ -14,103 +14,136 @@
   <script type="module" src="https://unpkg.com/three@0.160.0/build/three.module.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 </head>
 <body class="before-load">
-    <div class="loading">
-      <div class="shutter-top"></div>
-      <div class="shutter-bottom"></div>
-      <div class="loading-content">
-        <div class="load-counter">00</div>
-        <div class="load-bar-container">
-            <div class="load-bar"></div>
-        </div>
-        <div class="load-status">VIP CHECK: ENGINE START</div>
+  <div class="loading">
+    <div class="shutter-top"><canvas class="noise-canvas"></canvas></div>
+    <div class="shutter-bottom"><canvas class="noise-canvas"></canvas></div>
+    <div class="loading-content">
+      <div class="load-counter">00</div>
+      <div class="load-bar-container">
+          <div class="load-bar"></div>
+      </div>
+      <div class="load-status">VIP CHECK: ENGINE START</div>
+    </div>
+  </div>
+
+  <canvas id="grid-bg"></canvas>
+  
+  <div class="LP">
+    
+    <div class="screen-bg"></div>
+    <div class="screen-view">
+      <div class="screen-video" aria-hidden="true">
+        <video id="screen-video-wrapper" autoplay muted playsinline loop preload="metadata" webkit-playsinline poster="./assets/VIP.png">
+          <source src="./assets/vmain.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   
-  <canvas id="grid-bg"></canvas>
-
-  <div class="screen-bg"></div>
-  <div class="screen-view">
-    <div class="screen-video" aria-hidden="true">
-      <video id="screen-video-wrapper" autoplay muted playsinline loop preload="metadata" webkit-playsinline poster="./assets/VIP.png">
-        <source src="./assets/vmain.mp4" type="video/mp4" />
-      </video>
+    <div class="marquee-wrapper desktop-only">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="dsmsvg">
+          <defs>
+            <path id="path43" d="M 150,150 L 650,150 L 650,450 L 150,450 Z" />
+            <mask id="cornerMask">
+              <rect x="0" y="0" width="800" height="600" fill="white" />
+              <g fill="black" filter="url(#blurFilter)">
+                <circle cx="150" cy="150" r="70" /> <circle cx="650" cy="150" r="70" /> 
+                <circle cx="650" cy="450" r="70" /> <circle cx="150" cy="450" r="70" /> 
+              </g>
+              <filter id="blurFilter"><feGaussianBlur stdDeviation="15" /></filter>
+            </mask> 
+          </defs>
+          <use href="#path43" fill="none" stroke="#fff" stroke-width="20" />
+          <text fill="#fff" font-family="'American', 'LEMONMILK-Regular', 'Roboto', sans-serif" font-size="18" font-weight="regular" letter-spacing="5" dy="-15" mask="url(#cornerMask)">
+            <textPath class="marquee-path" href="#path43" startOffset="0%">
+              the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • 
+            </textPath>
+          </text>
+        </svg>
+    </div>
+    <div class="marquee-wrapper mobile-only">
+        <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet" class="msmsvg">
+          <defs>
+            <path id="path34" d="M 100,100 L 500,100 L 500,700 L 100,700 Z" />
+            <mask id="cornerMaskMobile">
+              <rect x="0" y="0" width="600" height="800" fill="white" />
+              <g fill="black" filter="url(#blurFilterMobile)">
+                <circle cx="100" cy="100" r="70" /> <circle cx="500" cy="100" r="70" /> 
+                <circle cx="500" cy="700" r="70" /> <circle cx="100" cy="700" r="70" /> 
+              </g>
+              <filter id="blurFilterMobile"><feGaussianBlur stdDeviation="15" /></filter>
+            </mask> 
+          </defs>
+          <use href="#path34" fill="none" stroke="#fff" stroke-width="15" />
+          <text fill="#fff" font-family="'LEMONMILK-Regular', 'Roboto', sans-serif" font-size="32" font-weight="bold" dy="-15" mask="url(#cornerMaskMobile)">
+            <textPath class="marquee-path" href="#path34" startOffset="0%">
+              the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • 
+            </textPath>
+          </text>
+        </svg>
+    </div>
+    
+    <div class="marquee-trial-II">
+      <div class="marquee-trial-content-II">
+        <span>
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
+            you can't download the experience &nbsp;
+        </span>
+      </div>
+    </div>
+	  <div class="marquee-trial">
+      <div class="marquee-trial-content">
+        <span>
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
+            &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
+            you can't download the experience &nbsp;
+        </span>
+      </div>
     </div>
   </div>
 
-  <div class="marquee-wrapper desktop-only">
-      <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="dsmsvg">
-        <defs>
-          <path id="path43" d="M 150,150 L 650,150 L 650,450 L 150,450 Z" />
-          <mask id="cornerMask">
-            <rect x="0" y="0" width="800" height="600" fill="white" />
-            <g fill="black" filter="url(#blurFilter)">
-              <circle cx="150" cy="150" r="70" /> <circle cx="650" cy="150" r="70" /> 
-              <circle cx="650" cy="450" r="70" /> <circle cx="150" cy="450" r="70" /> 
-            </g>
-            <filter id="blurFilter"><feGaussianBlur stdDeviation="15" /></filter>
-          </mask> 
-        </defs>
-        <use href="#path43" fill="none" stroke="#fff" stroke-width="20" />
-        <text fill="#fff" font-family="'American', 'LEMONMILK-Regular', 'Roboto', sans-serif" font-size="18" font-weight="regular" letter-spacing="5" dy="-15" mask="url(#cornerMask)">
-          <textPath class="marquee-path" href="#path43" startOffset="0%">
-            the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • 
-          </textPath>
-        </text>
-      </svg>
-  </div>
-  <div class="marquee-wrapper mobile-only">
-      <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid meet" class="msmsvg">
-        <defs>
-          <path id="path34" d="M 100,100 L 500,100 L 500,700 L 100,700 Z" />
-          <mask id="cornerMaskMobile">
-            <rect x="0" y="0" width="600" height="800" fill="white" />
-            <g fill="black" filter="url(#blurFilterMobile)">
-              <circle cx="100" cy="100" r="70" /> <circle cx="500" cy="100" r="70" /> 
-              <circle cx="500" cy="700" r="70" /> <circle cx="100" cy="700" r="70" /> 
-            </g>
-            <filter id="blurFilterMobile"><feGaussianBlur stdDeviation="15" /></filter>
-          </mask> 
-        </defs>
-        <use href="#path34" fill="none" stroke="#fff" stroke-width="15" />
-        <text fill="#fff" font-family="'LEMONMILK-Regular', 'Roboto', sans-serif" font-size="32" font-weight="bold" dy="-15" mask="url(#cornerMaskMobile)">
-          <textPath class="marquee-path" href="#path34" startOffset="0%">
-            the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • the biggest luxury car showroom in UAE • VIP MOTORS • 
-          </textPath>
-        </text>
-      </svg>
-  </div>
-  
-  <div class="marquee-trial-II">
-    <div class="marquee-trial-content-II">
-      <span>
-          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
-          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
-          &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
-          you can't download the experience &nbsp;
-      </span>
+  <section class="content-section right">
+    <div class="content-inner">
+      <h2>Precision Engineering</h2>
+      <p>
+        Every vehicle at VIP Motors represents the highest level of performance,
+        luxury, and innovation.
+      </p>
     </div>
-  </div>
-	<div class="marquee-trial">
-    <div class="marquee-trial-content">
-      <span>
-          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
-          &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE &nbsp; • &nbsp; Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations &nbsp; • 
-          &nbsp; impulse &nbsp; • &nbsp; independent online showroom &nbsp; • &nbsp;
-          you can't download the experience &nbsp;
-      </span>
-    </div>
-  </div>
+  </section>
   
+  <section class="content-section left">
+    <div class="content-inner">
+      <h2>Unmatched Collection</h2>
+      <p>
+        From hypercars to rare collectibles, we curate only the extraordinary.
+      </p>
+    </div>
+  </section>
+  
+  <section class="content-section right last">
+    <div class="content-inner">
+      <h2>Global Reach</h2>
+      <p>
+        Delivering elite automotive experiences across the world.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <h2>VIP <span>Motors</span></h2>
+      <p>Sheikh Zayed Road • Dubai • UAE</p>
+      <p>© 2026 VIP Motors — All Rights Reserved</p>
+    </div>
+  </footer>
+
+
   <!--MENU-->
-  <!--
-  <div class="logo">
-    <img src="./assets/VM logo.webp"></img>
-    <a href="">VIP motors</a>
-  </div>
-  -->
   <div class="menu-toggle closed">
     <div class="menu-toggle-icon">
       <div class="hamburger">
@@ -123,7 +156,6 @@
       <p>Start</p>
     </div>
   </div>
-
   <div class="menu">
     <!--
     <div class="menu-logo">
@@ -295,9 +327,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" integrity="sha512-6BTOlkauINO65nLhXhthZMtepgJSghyimIalb+crKRPhvhmsCdnIuGcVbR5/aQY2A+260iC1OPy1oCdB6pSSwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/index.cad48f07.js"></script>
 
-  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <script>
     function magneticEffect(element, strength = 40, easing = 0.15, invert = false) {
       let mouseX = 0, mouseY = 0;
@@ -341,7 +373,7 @@
     magneticEffect(document.querySelector(".logo img"), 35, 0.15);       // img with base centering + rotation
     magneticEffect(document.querySelector(".logo a"), 20, 0.12, true);   // text opposite movement
   </script>
-
+<!--
   <script>
     function lockViewport() {
       // Reset scroll position
@@ -363,8 +395,7 @@
     lockViewport();
     window.addEventListener('resize', lockViewport);
   </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+-->
 
 </body>
 </html>
