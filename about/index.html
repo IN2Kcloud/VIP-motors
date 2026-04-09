@@ -16,6 +16,15 @@
     body{ font-family:'LEMONMILK-Regular',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; min-height:100vh; overflow-x:hidden; }
     #grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
     .cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:#fff;pointer-events:none;mix-blend-mode:difference;transition:transform .05s linear;z-index:9999;opacity:0;}
+    .noise-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+      z-index: -1;
+    }
     /* ------------------  HEADER  ------------------ */
     .header {background-color: transparent; position: fixed; top: 0; left: 0; display: flex; align-items: center; justify-content: center; width: 100vw; height: 300px; border-bottom: 2px solid transparent; transition: height 0.3s ease; overflow: hidden; position: sticky; top: 0; z-index: 100;}
     .header.active {height: 150px; border-bottom: 2px solid #000;}
@@ -24,8 +33,10 @@
     .VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
     .VMcen {width: 140%; height: auto;}
     .menu {background-color: #CE1F26; display: flex; justify-content: space-around; align-items: center; width: 100%; height: 100%; z-index: 5; overflow: hidden; opacity: 0; transition: transform .5s ease-in-out, opacity .5s ease;}
+    /*
     .menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
     @keyframes grain {0%,100% {transform: translate(0,0);} 10% {transform: translate(-5%,-10%);} 20% {transform: translate(-15%,5%);} 30% {transform: translate(7%,-25%);} 40% {transform: translate(-5%,25%);} 50% {transform: translate(-15%,10%);} 60% {transform: translate(15%,0%);} 70% {transform: translate(0%,15%);} 80% {transform: translate(3%,35%);} 90% {transform: translate(-10%,10%);}}
+    */
     .header.active .menu {opacity: 1;}
     .logo {position: relative; font-family: 'LEMONMILK-Regular', 'American', sans-serif; font-size: 2rem; font-weight: bolder; color: #fff; text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px  2px 0 black, 2px  2px 0 black; letter-spacing: 0px; text-decoration: none; transition: 0.3s; z-index: 1;}
     .logo:hover {color: #000; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px  1px 0 white, 1px  1px 0 white;}
@@ -45,7 +56,7 @@
     .mb span::after { content: ""; position: absolute; left: -10%; right: -10%; top: 50%; height: 2px; background: white; transform: scaleX(0); transform-origin: center; transition: transform 0.3s ease-in-out; } 
     .mb.open span::after { transform: scaleX(1); }
     .mob-menu {background-color: #CE1F26; display: flex; flex-direction: column; justify-content: center; align-items: center;  text-align: center; position: fixed; top: 50%; left: 100%; transform: translateY(-50%); width: 80%; height: 60%; z-index:102; overflow: hidden; border: 4px solid black; transition: transform .5s ease-in-out;}
-    .mob-menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
+    /*.mob-menu::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
     .mob-menu-inner { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
     .mob-logo {position: relative; font-family: 'LEMONMILK-Regular', 'American', sans-serif; font-size: 2rem; font-weight: bolder; color: #fff; text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px  2px 0 black, 2px  2px 0 black; letter-spacing: 2px; text-decoration: none; transition: 0.3s; z-index: 1;}
     .mob-logo:hover {color: #000; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px  1px 0 white, 1px  1px 0 white;}
@@ -61,25 +72,26 @@
     .marquee-trial-content { display: inline-block; white-space: nowrap; animation: marqueeAnim 200s linear infinite; }
     .marquee-trial-content span { font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; letter-spacing: 10px; font-weight: 300; color: #fff; text-shadow: -5px -5px 0 black, 5px -5px 0 black, -5px  5px 0 black, 5px  5px 0 black; font-size: 5em; display: inline-block; padding-right: 2rem; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;} 
     @keyframes marqueeAnim { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-    .marquee-trial::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
-    .ab{ position:relative; background-color:#fff; padding:1rem; border:2px solid transparent; transition:transform 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease; overflow:hidden!important; }
+    /*.marquee-trial::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
+    .ab{ position:relative; background-color:#fff; padding:1rem; /*border:2px solid transparent;*/ transition:transform 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease; overflow:hidden!important; cursor: pointer;}
     .ab img{ width:100%; height:500px; object-fit:cover; margin-bottom:1rem; filter: grayscale(100%); transition:transform 0.4s ease, filter 0.5s ease; }
     .ab:hover img{transform:scale(1.03); filter: grayscale(0%);}
     .video-container { position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; border: 2px solid #000; margin-bottom: 1rem; filter: grayscale(100%); transition:transform 0.4s ease, filter 0.5s ease; }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .ab:hover .video-container{transform:scale(1.02); filter: grayscale(0%);}
-    .ab::before{content:'';position:absolute;top:-100%;left:-50%;width:300%;height:300%;background-image:url(../assets/noiseII.png);opacity:0;animation:grain 3s steps(10) infinite;transition:opacity 300ms ease;z-index:0;pointer-events:none;}
-    .ab>*{position:relative;z-index:1;}
-    .ab:hover{background-color:#CE1F26;border:2px solid #000;transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.15);z-index:2;color:#fff;}
-    .ab:hover::before{opacity:1;}
-    .ab:hover h2,.ab:hover h1{text-shadow:-2px -2px 0 black,2px -2px 0 black,-2px 2px 0 black,2px 2px 0 black;}
+    /*.ab>*{position:relative;z-index:1;}*/
+    .ab:hover{background-color:#000;/*border:2px solid #000;*/transform:translateY(-10px);box-shadow:0 8px 20px rgba(0,0,0,0.15);z-index:2;color:#fff;}
+    /*.ab::before{content:'';position:absolute;top:-100%;left:-50%;width:300%;height:300%;background-image:url(../assets/noiseII.png);opacity:0;animation:grain 3s steps(10) infinite;transition:opacity 300ms ease;z-index:0;pointer-events:none;}*/
+    /*.ab:hover::before{opacity:1;}*/
+    .ab:hover h2,.ab:hover h1{color: #000; text-shadow:-2px -2px 0 white,2px -2px 0 white,-2px 2px 0 white,2px 2px 0 white;}
     .ab:hover strong{color:#ddd;}
     section.about{display:flex;flex-direction:column;gap:2rem;text-align:center;}
     section.about h1,section.about h2{font-family:'American';letter-spacing:5px;margin-bottom:1rem;}
-    section.about h1{font-size:5rem;}
-    section.about h2{font-size:3rem;}
-    section.about p{font-size:1.5rem;font-weight: bold;line-height:1.6;letter-spacing: 1px;margin-bottom:1rem;}
-    section.about strong{color:var(--accent);}
+    section.about h1{font-size:5rem;transition:color .3s ease;}
+    section.about h2{font-size:3rem;transition:color .3s ease;}
+    section.about p{font-size:1.5rem;font-weight: bold;line-height:1.6;letter-spacing: 1px;margin-bottom:1rem;transition:color 1s ease;}
+    /*.ab:hover p {text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff;}*/
+    section.about strong{color:var(--accent);transition:color .3s ease;}
     @media (max-width: 800px) { .page-wrap{padding:1rem 1rem;} }
     /* footer */
     .footer{position: relative; background-color: #000;color: #fff; text-align:center;padding:2rem 0;border-top:2px solid #fff; margin-top:3rem; height: 22vh; width: 100vw;}
@@ -96,7 +108,7 @@
     @media (max-width: 768px) and (max-height: 800px) {.footer {height: 50vh;}}
     /* Loader CSS */
     .loading{display:flex;align-items:center;justify-content:center;position:fixed;top:0;right:0;bottom:0;left:0;z-index:110;background:#CE1F26;opacity:0;transition:0.5s;}
-    .loading::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
+    /*.loading::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
     .before-load .loading{opacity:1;}
     .load-skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: none;}
     .load-skullcen {position: absolute; width: 90%; height: auto; z-index: 3;}
@@ -131,6 +143,7 @@
       </div>
     </a>
     <div class="menu">
+      <canvas class="noise-canvas"></canvas>
       <a href="../inventory/index.html" class="logo">INVENTORY</span></a>
       <a href="../sell your car/index.html" class="logo">SELL YOUR CAR</span></a>
       <a href="" class="logo">360°</span></a>
@@ -142,6 +155,7 @@
   </header>
       <div class="mb"><span>MENU</span></div>
       <div class="mob-menu">
+        <canvas class="noise-canvas"></canvas>
         <div class="mob-menu-inner">
           <a href="../index.html" class="mob-logo">V I P</a> <br>
           <a href="../inventory/index.html" class="mob-logo">INVENTORY</span></a> <br>
@@ -157,6 +171,7 @@
   <main class="page-wrap">
     <section class="about">
       <div class="marquee-trial fade-sides">
+        <canvas class="noise-canvas"></canvas>
         <div class="marquee-trial-content">
           <span>
             &nbsp; VIP motors, Welcome Home &nbsp; • &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE specialized in car dealership &nbsp; • &nbsp; VIP motors, Welcome Home &nbsp; • &nbsp; VIP MOTORS is the biggest luxury car showroom in UAE specialized in car dealership &nbsp; • 
@@ -166,9 +181,10 @@
         </div>
       </div>
       <!--<div class="a1 ab"><h1>VIP motors, Welcome Home</h1><p>VIP MOTORS is the biggest luxury car showroom in UAE specialized in car dealership.</p></div>-->
-      <div class="a2 ab"><img src="./assets/a1.webp" alt=""><h2>Why VIP motors?</h2><p>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations.</p></div>
-      <div class="a3 ab"><img src="./assets/a2.webp" alt=""><h2>We Carry Quality Inventory</h2><p>Our team can carry out the entire process from registration to the delivery without hassle.</p></div>
+      <div class="a2 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a1.webp" alt=""><h2>Why VIP motors?</h2><p>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations.</p></div>
+      <div class="a3 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a2.webp" alt=""><h2>We Carry Quality Inventory</h2><p>Our team can carry out the entire process from registration to the delivery without hassle.</p></div>
       <div class="a8 ab">
+        <!--<canvas class="noise-canvas"></canvas>-->
         <div class="video-container">
           <iframe 
             src="https://www.youtube.com/embed/v5YZ3hiGiKw?si=wCuaGbwpkjYAwZuP" 
@@ -393,66 +409,160 @@
 
     // BG points -----------------------------------------------------------------
 
-const gridCanvas = document.getElementById("grid-bg");
-const ctx = gridCanvas.getContext("2d");
-
-let mouse = { x: 0.5, y: 0.5 };
-let time = 0;
-
-function resize() {
-  gridCanvas.width = window.innerWidth;
-  gridCanvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-window.addEventListener("mousemove", (e) => {
-  mouse.x = e.clientX / window.innerWidth;
-  mouse.y = e.clientY / window.innerHeight;
-});
-
-function draw() {
-  time += 0.01;
-
-  ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
-  ctx.fillStyle = "#eee";
-  ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
-
-  const spacing = 32;
-  const rows = Math.ceil(gridCanvas.height / spacing);
-  const cols = Math.ceil(gridCanvas.width / spacing);
-
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-
-      const px = x * spacing;
-      const py = y * spacing;
-
-      // wave motion
-      const wave =
-        Math.sin(x * 0.3 + time) +
-        Math.cos(y * 0.3 + time);
-
-      // mouse pull
-      const mx = (mouse.x - 0.5) * 40;
-      const my = (mouse.y - 0.5) * 40;
-
-      const dx = px + wave * 3 + mx * (y / rows);
-      const dy = py + wave * 3 + my * (x / cols);
-
-      const size = 1.2 + wave * 0.3;
-
-      ctx.beginPath();
-      ctx.arc(dx, dy, size, 0, Math.PI * 2);
-      ctx.fillStyle = "#000";
-      ctx.fill();
+    const gridCanvas = document.getElementById("grid-bg");
+    const ctx = gridCanvas.getContext("2d");
+    
+    let mouse = { x: 0.5, y: 0.5 };
+    let time = 0;
+    
+    function resize() {
+      gridCanvas.width = window.innerWidth;
+      gridCanvas.height = window.innerHeight;
     }
-  }
-
-  requestAnimationFrame(draw);
-}
-
-draw();
+    window.addEventListener("resize", resize);
+    resize();
+    
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX / window.innerWidth;
+      mouse.y = e.clientY / window.innerHeight;
+    });
+    
+    function draw() {
+      time += 0.01;
+    
+      ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+      ctx.fillStyle = "#eee";
+      ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
+    
+      const spacing = 32;
+      const rows = Math.ceil(gridCanvas.height / spacing);
+      const cols = Math.ceil(gridCanvas.width / spacing);
+    
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+    
+          const px = x * spacing;
+          const py = y * spacing;
+    
+          // wave motion
+          const wave =
+            Math.sin(x * 0.3 + time) +
+            Math.cos(y * 0.3 + time);
+    
+          // mouse pull
+          const mx = (mouse.x - 0.5) * 40;
+          const my = (mouse.y - 0.5) * 40;
+    
+          const dx = px + wave * 3 + mx * (y / rows);
+          const dy = py + wave * 3 + my * (x / cols);
+    
+          const size = 1.2 + wave * 0.3;
+    
+          ctx.beginPath();
+          ctx.arc(dx, dy, size, 0, Math.PI * 2);
+          ctx.fillStyle = "#000";
+          ctx.fill();
+        }
+      }
+    
+      requestAnimationFrame(draw);
+    }
+    
+    draw();
+    
+    // BG noise -----------------------------------------------------------------
+    class AnimatedNoiseBackground {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d");
+    
+        // hidden noise buffer (same as your original)
+        this.noiseCanvas = document.createElement("canvas");
+        this.noiseCtx = this.noiseCanvas.getContext("2d");
+    
+        this.noiseCanvas.width = 100;
+        this.noiseCanvas.height = 100;
+    
+        this.time = 0;
+    
+        this.createNoise();
+        this.resize();
+    
+        window.addEventListener("resize", () => this.resize());
+    
+        this.draw = this.draw.bind(this);
+        this.draw();
+      }
+    
+      createNoise() {
+        const imageData = this.noiseCtx.createImageData(100, 100);
+        const data = imageData.data;
+    
+        for (let i = 0; i < data.length; i += 4) {
+          const val = Math.random() * 255;
+          data[i] = data[i + 1] = data[i + 2] = val;
+          data[i + 3] = 25; // same opacity as your original
+        }
+    
+        this.noiseCtx.putImageData(imageData, 0, 0);
+      }
+    
+      resize() {
+        const parent = this.canvas.parentElement;
+        this.canvas.width = parent.offsetWidth;
+        this.canvas.height = parent.offsetHeight;
+      }
+    
+      draw() {
+        this.time += 0.005;
+    
+        const ctx = this.ctx;
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+    
+        // clear
+        ctx.clearRect(0, 0, w, h);
+    
+        // --- Gradient (same motion logic) ---
+        const centerX = w / 2 + Math.cos(this.time) * (w * 0.3);
+        const centerY = h / 2 + Math.sin(this.time * 0.8) * (h * 0.2);
+    
+        const baseRadius = Math.max(w, h) * 0.7;
+        const pulseRadius = baseRadius + Math.sin(this.time * 0.5) * 100;
+    
+        const gradient = ctx.createRadialGradient(
+          centerX, centerY, 0,
+          centerX, centerY, pulseRadius
+        );
+    
+        gradient.addColorStop(0, "#CB2027");
+        gradient.addColorStop(1, "#000");
+    
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, w, h);
+    
+        // --- Noise (EXACT behavior) ---
+        ctx.globalCompositeOperation = "source-over";
+    
+        const noiseOffsetX = Math.random() * this.noiseCanvas.width;
+        const noiseOffsetY = Math.random() * this.noiseCanvas.height;
+    
+        const pattern = ctx.createPattern(this.noiseCanvas, "repeat");
+    
+        ctx.save();
+        ctx.translate(noiseOffsetX, noiseOffsetY);
+        ctx.fillStyle = pattern;
+        ctx.fillRect(-noiseOffsetX, -noiseOffsetY, w, h);
+        ctx.restore();
+    
+        requestAnimationFrame(this.draw);
+      }
+    }
+    
+    // init all instances independently
+    document.querySelectorAll(".noise-canvas").forEach(canvas => {
+      new AnimatedNoiseBackground(canvas);
+    });
 
   </script>
 </body>
