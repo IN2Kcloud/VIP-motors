@@ -91,25 +91,28 @@ svg { width: 100%; height: auto; display: block; filter: drop-shadow(0px 0px 10p
 }
 
 .content-inner h2 {
+  font-family: 'American', 'Morbid', 'LEMONMILK-Regular', 'Roboto', sans-serif;
   position: relative;
-  font-size: 4rem;
+  font-size: 7rem;
   margin-bottom: 1rem;
+  line-height: .8;
 }
 
 .content-inner h2 span{
   color: #000;
   text-shadow: 0 0 0.05em #000;
   font-weight:normal;
-  position: absolute;top:50%;right:0;transform:translate(0%, -50%);
+  position: absolute;top:50%;left:50%;transform:translate(-50%, -50%);
   font-family:'Heisenberg';
-  font-size: 5rem;
-  letter-spacing: 1.3rem;
+  font-size: 6rem;
+  /*letter-spacing: 1rem;*/
   line-height: 1;
 }
-
+.last .content-inner h2 span{left:75%;}
 .content-inner p {
+  color: #fff;
   font-size: 1.2rem;
-  opacity: 0.8;
+  opacity: .9;
 }
 
 /* Footer */
@@ -142,7 +145,7 @@ svg { width: 100%; height: auto; display: block; filter: drop-shadow(0px 0px 10p
 }
 
 @media (max-width: 2000px) {  }
-@media (max-width: 1000px) { .content-section {flex-direction: column;} .content-section.right, .content-section.left{text-align: center;} .content-section.left{justify-content: flex-end;} .content-section.last{justify-content: center;} .content-inner h2 {font-size: 3rem;} .content-inner h2 span {font-size: 4rem;letter-spacing: 1rem;} .content-inner p {font-size: 1rem;} .footer{padding: 6rem 2rem;} .footer h2{font-size: 3rem;} .footer p {font-size: .8rem;} }
+@media (max-width: 1000px) { .content-section {flex-direction: column;} .content-section.right, .content-section.left{text-align: center;} .content-section.left{justify-content: flex-end;} .content-section.last{justify-content: center;} .content-inner h2 {font-size: 5rem;} .content-inner h2 span {font-size: 4rem;/*letter-spacing: 1rem;*/} .last .content-inner h2 span{left:50%;} .content-inner p {font-size: 1rem;} .footer{padding: 6rem 2rem;} .footer h2{font-size: 3rem;} .footer p {font-size: .8rem;} }
 
 /* ========== MENU MENU MENU ========== */
 @font-face{font-family:'LEMONMILK-Regular';src:url('./assets/LEMONMILK-Regular.otf') format('opentype');font-display:swap;}
