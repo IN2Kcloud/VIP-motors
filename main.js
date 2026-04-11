@@ -463,7 +463,7 @@ function draw() {
 }
 
 draw();
-
+/*
 // BG noise -----------------------------------------------------------------
 class AnimatedNoise {
   constructor(canvas) {
@@ -536,3 +536,4 @@ class AnimatedNoise {
 document.querySelectorAll(".noise-canvas").forEach(canvas => {
   new AnimatedNoise(canvas);
 });
+*/
