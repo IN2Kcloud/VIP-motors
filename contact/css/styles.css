@@ -5,6 +5,10 @@
   src: url('../../assets/LEMONMILK-Regular.otf') format('opentype');
 }
 @font-face {
+  font-family: 'LEMONMILK-Bold';
+  src: url('../../assets/LEMONMILK-Bold.otf') format('opentype');
+}
+@font-face {
   font-family: 'American';
   src: url('../../assets/American Captain.otf') format('opentype');
 }
