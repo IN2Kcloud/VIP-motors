@@ -73,7 +73,8 @@
     .marquee-trial-content span { font-family: 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; letter-spacing: 10px; font-weight: 300; color: #fff; text-shadow: -5px -5px 0 black, 5px -5px 0 black, -5px  5px 0 black, 5px  5px 0 black; font-size: 5em; display: inline-block; padding-right: 2rem; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;} 
     @keyframes marqueeAnim { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
     /*.marquee-trial::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
-    .ab{ position:relative; background-color:#fff; border:2px solid #000; padding:1rem; /*border:2px solid transparent;*/ transition:transform 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease; overflow:hidden!important; cursor: pointer;}
+    .ab{ position:relative; /*background-color:#fff; border:2px solid #000;*/ background-color:transparent; padding:1rem; /*border:2px solid transparent;*/ transition:transform 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease; overflow:hidden!important; cursor: pointer;}
+    .bb {position: absolute;bottom: 0; left: 50%; transform: translate(-50%, 0%); width: 90%;height: 5px;border-radius: 50%; background-color: #000;}
     .ab img{ width:100%; height:500px; object-fit:cover; margin-bottom:1rem; border:2px solid #000; filter: grayscale(100%); transition:border 0.4s ease, filter 0.5s ease; }
     .ab:hover img{/*transform:scale(1.03);*/ border:2px solid #fff; filter: grayscale(0%);}
     .video-container { position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; border: 2px solid #000; margin-bottom: 1rem; filter: grayscale(100%); transition:transform 0.4s ease, filter 0.5s ease; }
@@ -104,8 +105,8 @@
     .marquee-trial-content-footer span { font-family: 'American', 'Morbid', 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; font-weight: 300; color: #000;-webkit-text-stroke:3px #fff;text-shadow:0 0 9px #fff; font-size: 6em; display: inline-block; padding-right: 2rem; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;} 
     @keyframes marqueeAnimfooter { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
     @media (max-width: 2000px) { .footer {height: 33vh;} .footer-address {top: 50%;} }
-    @media (max-width: 800px) { .footer {height: 40vh;} .footer-address {top: 40%;width: 50%;} .footer p {top: 75%;} }
-    @media (max-width: 768px) and (max-height: 800px) {.footer {height: 50vh;}}
+    @media (max-width: 1000px) { .footer {height: 45vh;} .footer-address {top: 40%;width: 50%;} .footer p {top: 75%;} }
+    @media (max-width: 800px) and (max-height: 800px) {.footer {height: 55vh;}}
     /* Loader CSS */
     .loading{display:flex;align-items:center;justify-content:center;position:fixed;top:0;right:0;bottom:0;left:0;z-index:110;background:#000;opacity:0;transition:0.5s;}
     /*.loading::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
@@ -181,8 +182,8 @@
         </div>
       </div>
       <!--<div class="a1 ab"><h1>VIP motors, Welcome Home</h1><p>VIP MOTORS is the biggest luxury car showroom in UAE specialized in car dealership.</p></div>-->
-      <div class="a2 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a1.webp" alt=""><h2>Why VIP motors?</h2><p>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations.</p></div>
-      <div class="a3 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a2.webp" alt=""><h2>We Carry Quality Inventory</h2><p>Our team can carry out the entire process from registration to the delivery without hassle.</p></div>
+      <div class="a2 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a1.webp" alt=""><h2>Why VIP motors?</h2><p>Our showroom collections comprises of both used and new vehicles aimed to deliver within expectations.</p><div class="bb"></div></div>
+      <div class="a3 ab"><!--<canvas class="noise-canvas"></canvas>--><img src="./assets/a2.webp" alt=""><h2>We Carry Quality Inventory</h2><p>Our team can carry out the entire process from registration to the delivery without hassle.</p><div class="bb"></div></div>
       <div class="a8 ab">
         <!--<canvas class="noise-canvas"></canvas>-->
         <div class="video-container">
@@ -195,6 +196,7 @@
           </iframe>
         </div>
         <h2>Hyper and Limited Edition Cars</h2><p>at VIP Motors in Dubai as You Never Seen Before</p>
+        <div class="bb"></div>
       </div>
     </section>
   </main>
