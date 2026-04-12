@@ -40,6 +40,15 @@ body {
   z-index: -1;
   pointer-events: none;
 }
+.noise-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: -1;
+}
 
 /* HEADER */
 .header {background-color: transparent; position: fixed; top: 0; left: 0; display: flex; align-items: center; justify-content: center; width: 100vw; height: 300px; border-bottom: 2px solid transparent; transition: height 0.3s ease; overflow: hidden;}
@@ -304,15 +313,30 @@ a.content__text-link[data-fx="6"]:hover::after {
     }
 }
 
+/* footer */
+.footer{position: relative; background-color: #000;color: #fff; text-align:center;padding:2rem 0;border-top:2px solid #fff; margin-top:3rem; height: 22vh; width: 100vw;}
+.footer p {position: absolute; top: 85%; left: 50%; transform: translate(-50%, -50%);}
+.footer a {color: #fff; text-decoration: underline;}
+.footer-address {width: 10%; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);}
+.footer-address img{width: 100%; height: auto; max-width: 100px;}
+.marquee-trial-footer { position: absolute; top: 0%; width: 100%; margin: 0 auto; padding: 0.2em 0; white-space: nowrap; overflow: hidden; z-index: 0; background: transparent; display: flex; align-items: center; opacity: 1; transition: transform .5s ease-in-out; }
+.marquee-trial-content-footer { display: inline-block; white-space: nowrap; animation: marqueeAnimfooter 60s linear infinite; }
+.marquee-trial-content-footer span { font-family: 'American', 'Morbid', 'LEMONMILK-Regular', 'Roboto', sans-serif; text-transform: uppercase; font-weight: 300; color: #000;-webkit-text-stroke:3px #fff;text-shadow:0 0 9px #fff; font-size: 6em; display: inline-block; padding-right: 2rem; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;} 
+@keyframes marqueeAnimfooter { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@media (max-width: 2000px) { .footer {height: 33vh;} .footer-address {top: 50%;} }
+@media (max-width: 1000px) { .footer {height: 45vh;} .footer-address {top: 40%;width: 50%;} .footer p {top: 75%;} }
+@media (max-width: 800px) and (max-height: 800px) {.footer {height: 55vh;}}
+@media (max-width: 1920px) { .car-card { width: 30%; } }
+@media (max-width: 768px) { .search-bar input { width: 200px; font-size: .6rem;} .filter-toggle { letter-spacing: 0px; padding: 0.5rem .8rem; } .cars-container{ display: flex; justify-content: center; align-items: center; flex-direction: initial; flex-wrap: wrap; gap: 1rem; padding: 2rem 1vw; justify-items: center; } .car-card { width: 90%; } }
+
 /* Loader CSS */
-.loading{display:flex;align-items:center;justify-content:center;position:fixed;top:0;right:0;bottom:0;left:0;z-index:110;background:#CE1F26;opacity:0;transition:0.5s;}
-.loading::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}
-@keyframes grain {0%,100% {transform: translate(0,0);} 10% {transform: translate(-5%,-10%);} 20% {transform: translate(-15%,5%);} 30% {transform: translate(7%,-25%);} 40% {transform: translate(-5%,25%);} 50% {transform: translate(-15%,10%);} 60% {transform: translate(15%,0%);} 70% {transform: translate(0%,15%);} 80% {transform: translate(3%,35%);} 90% {transform: translate(-10%,10%);}}
+.loading{display:flex;align-items:center;justify-content:center;position:fixed;top:0;right:0;bottom:0;left:0;z-index:110;background:#000;opacity:0;transition:0.5s;}
+/*.loading::before {content: ''; position: absolute; top: -100%; left: -50%; width: 300%; height: 300%; background-image: url(../assets/noiseII.png); opacity: 1; animation: grain 3s steps(10) infinite; z-index: -1;}*/
 .before-load .loading{opacity:1;}
 .load-skull {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 160px; height: 160px; z-index: 10; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: none;}
 .load-skullcen {position: absolute; width: 90%; height: auto; z-index: 3;}
 .load-VMwrap {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none;}
 .load-VMcen {width: 140%; height: auto;}
 .load-VMwrap { animation: spin 5s linear infinite; }
-@keyframes spin { from { transform: rotate(0deg); } to   { transform: rotate(-360deg); } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
 @media(max-width: 1300px) { .load-skullcen {width: 90%;} }
