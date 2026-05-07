@@ -313,7 +313,7 @@ function draw() {
 
   const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, pulseRadius);
   gradient.addColorStop(0, "#fff");
-  gradient.addColorStop(1, "#bbb");
+  gradient.addColorStop(1, "#eee");
 
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height);
